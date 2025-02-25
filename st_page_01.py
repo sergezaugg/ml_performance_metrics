@@ -103,28 +103,38 @@ df = make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2)
 rauc_val =           roc_auc_score(y_true = df['class'], y_score = df['proba_score'])
 avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Class B')
 
-fig00 = px.scatter(
-    data_frame = df,
-    x = 'proba_score',
-    y = 'jitter',
-    color = 'class',
-    color_discrete_sequence=[ss.color_a, ss.color_b],
-    template='plotly_dark',
-    width = 900,
-    height = 500,
-    )
 
-_ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
-_ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
-_ = fig00.update_traces(marker=dict(size=4))
-_ = fig00.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
-_ = fig00.update_layout(xaxis_range=[-0.01, +1.01])
-_ = fig00.update_layout(paper_bgcolor="#112233",)
-# fig00.show()
+def make_fig():
+    fig00 = px.scatter(
+        data_frame = df,
+        x = 'proba_score',
+        y = 'jitter',
+        color = 'class',
+        color_discrete_sequence=[ss.color_a, ss.color_b],
+        template='plotly_dark',
+        width = 900,
+        height = 500,
+        )
+
+    _ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
+    _ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
+    _ = fig00.update_traces(marker=dict(size=4))
+    _ = fig00.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
+    _ = fig00.update_layout(xaxis_range=[-0.01, +1.01])
+    _ = fig00.update_layout(paper_bgcolor="#112233",)
+    return(fig00)
+    # fig00.show()
+
+fig00 = make_fig()
+
+
+def mak_fig2():
+    st.plotly_chart(fig00, use_container_width=True)
 
 with col_a2:
     st.subheader("Viz")
-    st.plotly_chart(fig00, use_container_width=True)
+    # st.plotly_chart(fig00, use_container_width=True)
+    mak_fig2()
 
         
    
@@ -138,13 +148,13 @@ col_a2, col_b2, = st.columns([0.20, 0.80])
 
 with col_a2:
     st.subheader("Scores ")
-    st.text("ROC-AUC          : " + "{:.3f}".format(rauc_val.round(4))  )
-    st.text("Average Precision: " + "{:.3f}".format(avep_val.round(4))    )
+    st.text("ROC-AUC          : " + "{:.3f}".format(rauc_val.round(4)) )
+    st.text("Average Precision: " + "{:.3f}".format(avep_val.round(4)) )
    
 with col_b2:
     c1, c2, = st.columns([0.20, 0.80])
     with c1:
-        ss.color_a = st.color_picker("Class A Color", '#ee33ff')
+        ss.color_a = st.color_picker("Class A Color", '#ee33ff', on_change = mak_fig2)
     with c2:
         ss.color_b = st.color_picker("Class B Color", '#33aaff')
   
