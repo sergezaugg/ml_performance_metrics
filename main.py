@@ -33,12 +33,6 @@ def make_one_class_data(N, mu, sigma, class_name):
     df['class'] = class_name
     return(df)
 
-# test 
-mu_1 = 0.3
-sigma_1 = 0.45
-aaa = make_one_class_data(5000, mu_1, sigma_1, "aaa")
-[aaa['proba_score'].mean().round(2), mu_1]
-[aaa['proba_score'].std().round(2), sigma_1]
 
 
 
@@ -77,6 +71,7 @@ _ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 1, row 
 _ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 1, row = 1, col = 1, mirror = True)
 _ = fig00.update_traces(marker=dict(size=4))
 _ = fig00.update_layout(xaxis=dict(showgrid=False),yaxis=dict(showgrid=False))
+_ = fig00.update_layout(xaxis_range=[-0.1,1.1])
 fig00.show()
 
 
