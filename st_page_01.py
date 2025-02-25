@@ -68,16 +68,18 @@ def make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2):
 #-----------------------
 # 3 show
 
-col_a1, col_a2, = st.columns([0.20, 0.80])
+col_a1, col_space01, col_a2, = st.columns([0.20, 0.05, 0.80])
 
 with col_a1: 
     st.subheader("Set params")
-    N_1     = st.slider("N",       min_value=  10,   max_value=1000, value=300,  key="slide_01")
-    mu_1    = st.slider("mean",  min_value = 0.0,  max_value=0.99, value=0.1,  key="slide_02")
-    sigma_1 = st.slider("stdev",  min_value= 0.0,  max_value=0.99, value=0.2,  key="slide_03")
-    N_2     = st.slider("N",       min_value=  10,   max_value=1000, value=300,  key="slide_04")
-    mu_2    = st.slider("mean",  min_value= 0.0,  max_value=0.99, value=0.9,  key="slide_05")
-    sigma_2 = st.slider("stdev",  min_value= 0.0,  max_value=0.99, value=0.2,  key="slide_06")
+    st.text('Class A')
+    N_1     = st.slider("N",       min_value=  10,   max_value=1000, value=300, label_visibility = "hidden", key="slide_01")
+    mu_1    = st.slider("mean",  min_value = 0.0,  max_value=0.99, value=0.1,  label_visibility = "hidden",key="slide_02")
+    sigma_1 = st.slider("stdev",  min_value= 0.0,  max_value=0.99, value=0.2,  label_visibility = "hidden",key="slide_03")
+    st.text('Class b')
+    N_2     = st.slider("N",       min_value=  10,   max_value=1000, value=300,  label_visibility = "hidden",key="slide_04")
+    mu_2    = st.slider("mean",  min_value= 0.0,  max_value=0.99, value=0.9,  label_visibility = "hidden",key="slide_05")
+    sigma_2 = st.slider("stdev",  min_value= 0.0,  max_value=0.99, value=0.2,  label_visibility = "hidden",key="slide_06")
     
 # N_1 = 5000
 # mu_1 = 0.5
@@ -100,15 +102,16 @@ fig00 = px.scatter(
     )
 
 _ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 1, row = 1, col = 1, mirror = True)
-_ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 1, row = 1, col = 1, mirror = True)
+_ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
 _ = fig00.update_traces(marker=dict(size=4))
-_ = fig00.update_layout(xaxis=dict(showgrid=False),yaxis=dict(showgrid=False))
-_ = fig00.update_layout(xaxis_range=[-0.1,1.1])
+_ = fig00.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
+_ = fig00.update_layout(xaxis_range=[-0.01, +1.01])
+_ = fig00.update_layout(paper_bgcolor="#112233",)
 # fig00.show()
 
 with col_a2:
     st.subheader("Viz")
-    st.plotly_chart(fig00, use_container_width=False)
+    st.plotly_chart(fig00, use_container_width=True)
 
         
    
