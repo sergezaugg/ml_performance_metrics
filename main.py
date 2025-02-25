@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_auc_score, average_precision_score
 
 
 
@@ -77,7 +77,7 @@ fig00.show()
 
 roc_auc_score(y_true = df['class'], y_score = df['proba_score'])
 
-
+average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Class A')
 
 
 
