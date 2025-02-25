@@ -22,6 +22,7 @@ if 'color_b' not in ss:
 
 
 
+
 #-----------------------
 # 1 define
 
@@ -34,7 +35,7 @@ def make_one_class_data(N, mu, sigma, class_name):
     assert (sigma2 > 0 ) , "sigma must be > 0" 
     a = mu*(mu*(1-mu)/sigma2 - 1)
     b = a*(1-mu)/mu
-    vals = np.random.beta(a = a, b = b, size = N)
+    vals = np.random.beta(a = a, b = b, size = N) 
     df = pd.DataFrame({"proba_score":vals})
     df['class'] = class_name
     return(df)
@@ -53,10 +54,11 @@ def make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2):
     class_name_1 = "Class A"
     class_name_2 = "Class B"
     df = pd.concat([
-        make_one_class_data(N_1, mu_1, sigma_1, class_name_1),
-        make_one_class_data(N_2, mu_2, sigma_2, class_name_2)
+        make_one_class_data(N_1, mu_1, sigma_1, class_name_1) ,
+        make_one_class_data(N_2, mu_2, sigma_2, class_name_2) 
         ])
     df['jitter'] = np.random.uniform(size=N_1+N_2)
+    df['jitter'][df['class'] == class_name_1] += 1
     return(df)
 
 
@@ -75,7 +77,7 @@ def make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2):
 col_a1, col_space01, col_a2, = st.columns([0.20, 0.05, 0.80])
 
 with col_a1: 
-    st.subheader("Set params")
+    st.subheader("Distribution params")
 
     col_x1, col_x2, = st.columns([0.50, 0.50])
 
@@ -114,6 +116,10 @@ def make_fig():
         template='plotly_dark',
         width = 900,
         height = 500,
+         labels={
+                "proba_score": "Score",
+                "jitter": "Random jitter",
+                 },
         )
 
     _ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
@@ -121,41 +127,41 @@ def make_fig():
     _ = fig00.update_traces(marker=dict(size=4))
     _ = fig00.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
     _ = fig00.update_layout(xaxis_range=[-0.01, +1.01])
-    _ = fig00.update_layout(paper_bgcolor="#112233",)
+    _ = fig00.update_layout(paper_bgcolor="#334455",)
     return(fig00)
     # fig00.show()
 
 fig00 = make_fig()
 
 
-def mak_fig2():
-    st.plotly_chart(fig00, use_container_width=True)
-
 with col_a2:
-    st.subheader("Viz")
-    # st.plotly_chart(fig00, use_container_width=True)
-    mak_fig2()
+    st.subheader("Vizualise distribution of score")
+    st.plotly_chart(fig00, use_container_width=True)
+    # mak_fig2()
 
         
    
-
-   
-   
-
 #-----------------------
 # 2 nd line 
-col_a2, col_b2, = st.columns([0.20, 0.80])
+col_a2, col_space02, col_b2, = st.columns([0.20, 0.05, 0.80])
 
-with col_a2:
-    st.subheader("Scores ")
-    st.text("ROC-AUC          : " + "{:.3f}".format(rauc_val.round(4)) )
-    st.text("Average Precision: " + "{:.3f}".format(avep_val.round(4)) )
+
    
-with col_b2:
-    c1, c2, = st.columns([0.20, 0.80])
+with col_a2:
+    st.subheader("Select colors")
+    c1, c2, _ = st.columns([0.20, 0.20, 0.80])
+    st.button("confirm color")
     with c1:
-        ss.color_a = st.color_picker("Class A Color", '#ee33ff', on_change = mak_fig2)
+        ss.color_a = st.color_picker("Class A Color", '#ee33ff') #  on_change = _ )
     with c2:
         ss.color_b = st.color_picker("Class B Color", '#33aaff')
   
+with col_b2:
+    st.subheader("Performance metrics")
+    st.text("ROC-AUC          : " + "{:.3f}".format(rauc_val.round(4)) )
+    st.text("Average Precision: " + "{:.3f}".format(avep_val.round(4)) )
+
+
+
+
 
