@@ -8,7 +8,11 @@ import streamlit as st
 col_aa, col_bb, = st.columns([0.60, 0.40])
 
 with col_aa: 
+
     st.title('Understand ML performance metrics')
+
+    st.page_link("st_page_01.py", label="LINK : Interactive dashboard", icon = "💜")
+
     st.markdown(
     '''    
     :violet[**SUMMARY:**]
@@ -20,8 +24,6 @@ with col_aa:
     The score can be manually tuned to assess many relevant scenarios (balanced vs unbalanced classes, good vs bad separation).
     The score is graphically shown and a decision threshold can be manually set (needed for some metrics)
     ''')
-
-    st.page_link("st_page_01.py", label="LINK : Interactive dashboard", icon = "💜")
     
     st.markdown(
     '''    

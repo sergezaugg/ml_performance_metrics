@@ -16,9 +16,9 @@ from streamlit import session_state as ss
 
 # initial value of session state
 if 'color_a' not in ss:
-    ss.color_a = '#D100FF'
+    ss.color_a = '#FF00AA'
 if 'color_b' not in ss:
-    ss.color_b = '#33AAFF'
+    ss.color_b = '#6AFF00'
 if 'decision_thld' not in ss:
     ss.decision_thld = 0.5
 
@@ -127,8 +127,10 @@ with col_a1:
         upper_lim_2 = 0.98*np.sqrt(mu_2*(1-mu_2))
         sigma_2 = st.slider("S.D.", min_value= 0.01, max_value=upper_lim_2, value=0.20, label_visibility = "visible",key="slide_06")
 
-    st.subheader("Decision threshold")
-    ss.decision_thld = st.slider("thld", min_value= 0.0, max_value=1.0, value=0.50,  label_visibility = "hidden",key="slide_07")
+    st.text("")
+    st.text("")
+    st.text("")
+    ss.decision_thld = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=0.50,  label_visibility = "visible",key="slide_07")
     
 df = make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2)
 
@@ -151,18 +153,21 @@ col_a2, col_space02, col_b2, col_space021 = st.columns([0.20, 0.05, 0.80, 0.10])
 
 with col_a2:
     st.subheader("")
-    c1, c2, _ = st.columns([0.20, 0.20, 0.40])
-    st.button("Confirm")
+    c1, c2, c3 = st.columns([0.20, 0.20, 0.40])
+    # st.button("Confirm")
     with c1:
         ss.color_a = st.color_picker("Class A Color", ss.color_a) 
     with c2:
         ss.color_b = st.color_picker("Class B Color", ss.color_b)
+    with c3:
+        st.text("")
+        st.text("")
+        st.button("Confirm")
         
 with col_b2:
     col1, col2 = st.columns([0.4, 0.6])
-    col1.subheader("Threshold free metrics")
+    col1.subheader("Threshold-free metrics")
     col2.subheader("Threshold dependent metrics")
-    # st.subheader("Performance metrics")
     col1, col2, col3, col4, col5, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
     col1.metric("ROC-AUC", df_perf_metrics["ROC-AUC"], border=True)
     col2.metric("Average Precision", df_perf_metrics["Average Precision"], border=True)
@@ -170,27 +175,10 @@ with col_b2:
     col4.metric("Recall", df_perf_metrics['Recall'], border=True)
     col5.metric("Accuracy", df_perf_metrics['Accuracy'], border=True)
 
+st.divider()
 
 
 
 
 
-
-
-# slider_default_values = [1000, 0.2, 0.2, 1000, 0.8, 0.2, 0.5]
-
-# if st.button("Foo"):
-#     print("haha")
-#     ss.clear()
-#     st.rerun()
-#     ss["slide_01"] = slider_default_values[0]
-#     ss["slide_02"] = slider_default_values[1]
-#     ss["slide_03"] = slider_default_values[2]
-#     ss["slide_04"] = slider_default_values[3]
-#     ss["slide_05"] = slider_default_values[4]
-#     ss["slide_06"] = slider_default_values[5]
-#     ss["slide_07"] = slider_default_values[6]
-#     st.rerun()
-
-# # st.text(ss["slide_01"])
 
