@@ -1,6 +1,7 @@
 #--------------------             
 # Author : Serge Zaugg
 # Description : Main streamlit entry point
+# run locally : streamlit run stmain.py
 #--------------------
 
 import streamlit as st
@@ -14,5 +15,3 @@ pg = st.navigation([p0, p1])
 
 pg.run()
 
-# run locally
-# streamlit run stmain.py
