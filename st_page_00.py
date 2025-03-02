@@ -1,6 +1,6 @@
 #--------------------             
 # Author : Serge Zaugg
-# Description : some info 
+# Description : Some concise background info 
 #--------------------
 
 import streamlit as st
