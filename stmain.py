@@ -16,7 +16,7 @@ pg = st.navigation([p0, p1])
 pg.run()
 
 with st.sidebar:
-    st.text("Under devel. (v0.9.0)")
+    st.text("Under devel. (v0.9.1)")
     st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     st.title(""); st.title(""); st.title(""); st.title("") 
     st.markdown(''':gray[RELATED TOPICS]''')
