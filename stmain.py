@@ -21,4 +21,4 @@ with st.sidebar:
     st.title(""); st.title(""); st.title(""); st.title("") 
     st.markdown(''':gray[RELATED TOPICS]''')
     st.page_link("https://purenoisefeatures.streamlit.app/", label=":gray[pure-noise-features]")
-    st.page_link("https://featureimportance.streamlit.app/", label=":gray[feature-importance:red]")
+    st.page_link("https://featureimportance.streamlit.app/", label=":gray[feature-importance]")
