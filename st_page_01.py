@@ -117,32 +117,32 @@ with col_a1:
         with col_x1: 
             st.text('Class A')
             N_1     = st.slider("N",     min_value =  10, max_value=5000,  value=1000, label_visibility = "visible", key="slide_01")
-            mu_1    = st.slider("Mean",  min_value = 0.01, max_value=0.99,  value=0.20,  label_visibility = "visible",key="slide_02")
+            mu_1    = st.slider("Mean",  min_value = 0.03, max_value=0.97,  value=0.20,  label_visibility = "visible",key="slide_02")
             # dynamically compute feasible upper std 
-            upper_lim_1 = 0.98*np.sqrt(mu_1*(1-mu_1))
-            sigma_1 = st.slider("S.D.", min_value = 0.01, max_value=upper_lim_1, value=0.20,  label_visibility = "visible",key="slide_03")
+            upper_lim_1 = 0.90*np.sqrt(mu_1*(1-mu_1)) # to be checked!
+            sigma_1 = st.slider("S.D.", min_value = 0.03, max_value=upper_lim_1, value=0.20,  label_visibility = "visible",key="slide_03")
         
         with col_x2: 
             st.text('Class B')
             N_2     = st.slider("N",     min_value=  10, max_value=5000, value=1000, label_visibility = "visible",key="slide_04")
-            mu_2    = st.slider("Mean",  min_value= 0.01, max_value=0.99, value=0.80, label_visibility = "visible",key="slide_05")
+            mu_2    = st.slider("Mean",  min_value= 0.03, max_value=0.97, value=0.80, label_visibility = "visible",key="slide_05")
             # dynamically compute feasible upper std 
-            upper_lim_2 = 0.98*np.sqrt(mu_2*(1-mu_2))
-            sigma_2 = st.slider("S.D.", min_value= 0.01, max_value=upper_lim_2, value=0.20, label_visibility = "visible",key="slide_06")
+            upper_lim_2 = 0.90*np.sqrt(mu_2*(1-mu_2)) # to be checked!
+            sigma_2 = st.slider("S.D.", min_value= 0.03, max_value=upper_lim_2, value=0.20, label_visibility = "visible",key="slide_06")
 
     with st.container(height=None, border=True, key='conta_01b'):
         ss.decision_thld = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=0.50,  label_visibility = "visible",key="slide_07")
 
     with st.container(height=None, border=True, key='conta_01c'):
-        c1, c2, c3 = st.columns([0.20, 0.20, 0.40])
+        c1, c2 = st.columns([0.20, 0.20])
         with c1:
             ss.color_a = st.color_picker("Class A Color", ss.color_a) 
         with c2:
             ss.color_b = st.color_picker("Class B Color", ss.color_b)
-        with c3:
-            st.text("")
-            st.text("")
-            st.button("Confirm colors")
+        # with c3:
+        #     st.text("")
+        #     st.text("")
+        #     st.button("Confirm colors")
     
 df = make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2)
 
@@ -169,15 +169,12 @@ with col_a2:
         col4.metric("Recall", df_perf_metrics['Recall'], border=True)
         col5.metric("Accuracy", df_perf_metrics['Accuracy'], border=True)
        
-st.divider()
+# st.divider()
 
 st.text("""
-        * A Beta distribution parametrized with mean and standard deviation (S.D) is used for each class. 
-        Note that some combinations of mean and S.D are not feasible for the Beta distribution. 
-
-        Note that 'Class B' represents the "positive class", i.e. the one to be detected.
+        * A Beta distribution parametrized with mean and standard deviation (S.D.) is used for each class. Note that some combinations of mean and S.D. are not feasible for the Beta distribution. 
+        'Class B' represents the "positive class", i.e. the one to be detected.
         """)
-
 
 st.page_link("st_page_00.py", label="LINK : Summary with context and explanations", icon = "💜")
 
