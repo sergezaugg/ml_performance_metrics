@@ -9,9 +9,9 @@ import streamlit as st
 st.set_page_config(layout="wide")
 
 p0 = st.Page("st_page_00.py", title="Summary")
-p1 = st.Page("st_page_01.py", title="Dashboard")
+p1 = st.Page("st_page_01.py", title="Interactive")
 
-pg = st.navigation([p0, p1])
+pg = st.navigation([p1, p0])
 
 pg.run()
 

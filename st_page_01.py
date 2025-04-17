@@ -139,10 +139,6 @@ with col_a1:
             ss.color_a = st.color_picker("Class A Color", ss.color_a) 
         with c2:
             ss.color_b = st.color_picker("Class B Color", ss.color_b)
-        # with c3:
-        #     st.text("")
-        #     st.text("")
-        #     st.button("Confirm colors")
     
 df = make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2)
 
@@ -169,12 +165,9 @@ with col_a2:
         col4.metric("Recall", df_perf_metrics['Recall'], border=True)
         col5.metric("Accuracy", df_perf_metrics['Accuracy'], border=True)
        
-# st.divider()
-
 st.text("""
         * A Beta distribution parametrized with mean and standard deviation (S.D.) is used for each class. Note that some combinations of mean and S.D. are not feasible for the Beta distribution. 
         'Class B' represents the "positive class", i.e. the one to be detected.
         """)
 
-st.page_link("st_page_00.py", label="LINK : Summary with context and explanations", icon = "💜")
 
