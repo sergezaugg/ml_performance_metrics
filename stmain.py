@@ -5,8 +5,20 @@
 #--------------------
 
 import streamlit as st
+from streamlit import session_state as ss
 
 st.set_page_config(layout="wide")
+
+
+# initial value of session state
+if 'color_a' not in ss:
+    ss.color_a = '#FF00AA'
+if 'color_b' not in ss:
+    ss.color_b = '#6AFF00'
+if 'decision_thld' not in ss:
+    ss.decision_thld = 0.5
+
+
 
 p0 = st.Page("st_page_00.py", title="Summary")
 p1 = st.Page("st_page_01.py", title="Interactive")
