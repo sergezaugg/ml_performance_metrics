@@ -125,12 +125,7 @@ if __name__ == '__main__':
     # test 
     mu_1 = 0.03
     sigma_1 = 0.20
-
-
-
     aaa = make_one_class_data(5000, mu_1, sigma_1, "aaa")
-
-
     [aaa['proba_score'].mean().round(2), mu_1]
     [aaa['proba_score'].std().round(2), sigma_1]
 

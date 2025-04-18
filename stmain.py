@@ -9,7 +9,6 @@ from streamlit import session_state as ss
 
 st.set_page_config(layout="wide")
 
-
 # initial value of session state
 if 'color_a' not in ss:
     ss.color_a = '#FF00AA'
@@ -18,17 +17,14 @@ if 'color_b' not in ss:
 if 'decision_thld' not in ss:
     ss.decision_thld = 0.5
 
-
-
+# make navigation
 p0 = st.Page("st_page_00.py", title="Summary")
 p1 = st.Page("st_page_01.py", title="Interactive")
-
 pg = st.navigation([p1, p0])
-
 pg.run()
 
 with st.sidebar:
-    st.text("Under devel. (v0.9.1)")
+    st.text("v0.9.2")
     st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     st.title(""); st.title(""); st.title(""); st.title("") 
     st.markdown(''':gray[RELATED TOPICS]''')
