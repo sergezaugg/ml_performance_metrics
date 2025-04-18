@@ -17,15 +17,6 @@ from streamlit import session_state as ss
 @st.cache_data
 def make_one_class_data(N, mu, sigma, class_name):
     sigma2 = sigma**2
-    var_max = mu*(1-mu)
-    sdt_max = np.sqrt(var_max)
-    # assert (sigma2 <= var_max) , "sigma must be <= " + str(sdt_max)
-    # assert (sigma2 > 0 ) , "sigma must be > 0" 
-    if sigma2 >= var_max:
-        sigma = sdt_max
-    # if sigma2 <= 0:  
-    #     sigma = 0.03  
-    sigma2 = sigma**2   
     a = mu*(mu*(1-mu)/sigma2 - 1)
     b = a*(1-mu)/mu
     vals = np.random.beta(a = a, b = b, size = N) 
