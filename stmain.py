@@ -24,6 +24,7 @@ pg = st.navigation([p1, p0])
 pg.run()
 
 with st.sidebar:
+    st.markdown(":violet[**Explain and understand machine learning performance metrics**]") 
     st.text("v0.9.2")
     st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     st.title(""); st.title(""); st.title(""); st.title("") 
