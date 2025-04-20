@@ -47,10 +47,10 @@ with col_aa:
 
 
 
-"""
-True positive rate (TPR) = recall = sensitivity 
-True negative rate (TNR) = specificity
-""" 
+# """
+# True positive rate (TPR) = recall = sensitivity 
+# True negative rate (TNR) = specificity
+# """ 
 
 
    
