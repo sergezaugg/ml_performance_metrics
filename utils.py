@@ -14,24 +14,6 @@ from sklearn.metrics import roc_auc_score, average_precision_score, precision_sc
 from streamlit import session_state as ss
 
 
-def get_safe_params(k, init_mu):
-    """
-    k : short string used to construct a key
-    """
-    N     = st.slider("N",     min_value =  10, max_value=5000,  value=1000, label_visibility = "visible", key = k +"001")
-    mu    = st.slider("Mean",  min_value = 0.03, max_value=0.97,  value=init_mu,  label_visibility = "visible", key = k + "002")
-    # dynamically compute feasible upper std 
-    upper_lim = 0.90*np.sqrt(mu*(1-mu)) # to be checked!
-    sigma = st.slider("S.D.", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, 0.20),  label_visibility = "visible", key = k + "003")
-    # correct if impossible values were provided 
-    sigma2 = sigma**2
-    var_max = mu*(1-mu)
-    sdt_max = 0.99*np.sqrt(var_max)
-    if sigma2 >= var_max:
-        sigma = sdt_max
-    return(N, mu, sigma)
-
-
 @st.cache_data
 def make_one_class_data(N, mu, sigma, class_name):
     sigma2 = sigma**2
