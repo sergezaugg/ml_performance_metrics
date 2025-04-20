@@ -43,7 +43,8 @@ with col_a1:
         st.text("Simulate score distribution *")
         col_x1, col_x2, = st.columns([0.50, 0.50])
         with col_x1: 
-            st.text('Class A')
+            st.text('Background')
+            st.text('Class')
             ss.upar['N_1']     = st.slider("N",     min_value =  10, max_value=5000,   value=ss.upar['N_1'], label_visibility = "visible", key = "Class_A_001",on_change = store_N1)
             ss.upar['mu_1']    = st.slider("Mean",  min_value = 0.03, max_value=0.97,  value=ss.upar['mu_1'],  label_visibility = "visible", key = "Class_A_002", on_change = store_mu1)
             # dynamically compute feasible upper std 
@@ -51,7 +52,8 @@ with col_a1:
             ss.upar['sigma_1'] = st.slider("S.D.", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_1']),  
                                            label_visibility = "visible", key = "Class_A_003", on_change = store_sigma1)
         with col_x2: 
-            st.text('Class B °')
+            st.text('Target °')
+            st.text('Class')
             ss.upar['N_2']     = st.slider("N",     min_value =  10, max_value=5000,   value=ss.upar['N_2'], label_visibility = "visible", key = "Class_B_001",on_change = store_N2)
             ss.upar['mu_2']    = st.slider("Mean",  min_value = 0.03, max_value=0.97,  value=ss.upar['mu_2'],  label_visibility = "visible", key = "Class_B_002", on_change = store_mu2)
             # dynamically compute feasible upper std 
@@ -65,9 +67,9 @@ with col_a1:
     with st.container(height=None, border=True, key='conta_01c'):
         c1, c2 = st.columns([0.20, 0.20])
         with c1:
-            ss["upar"]["col_a"] = st.color_picker("Class A Color", ss["upar"]["col_a"]) 
+            ss["upar"]["col_a"] = st.color_picker("Background", ss["upar"]["col_a"]) 
         with c2:
-            ss["upar"]["col_b"] = st.color_picker("Class B Color", ss["upar"]["col_b"])
+            ss["upar"]["col_b"] = st.color_picker("Target", ss["upar"]["col_b"])
 
 
 # compute data, get perf metrics, and make plot 
@@ -82,7 +84,7 @@ with col_a2:
       
 st.text("""
         * A Beta distribution parametrized with mean and standard deviation (S.D.) is used for each class. Note that some combinations of mean and S.D. are not feasible for the Beta distribution. 
-        ° Class B represents the positive class, i.e. the one to be detected.
+        ° Target is the class to be detected.
         """)
 
 

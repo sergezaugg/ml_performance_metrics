@@ -27,8 +27,8 @@ def make_one_class_data(N, mu, sigma, class_name):
 
 @st.cache_data
 def make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2):
-    class_name_1 = "Class A"
-    class_name_2 = "Class B"
+    class_name_1 = "Background"
+    class_name_2 = "Target"
     df = pd.concat([
         make_one_class_data(N_1, mu_1, sigma_1, class_name_1) ,
         make_one_class_data(N_2, mu_2, sigma_2, class_name_2) 
@@ -63,9 +63,9 @@ def make_fig(df, dot_colors):
 @st.cache_data
 def get_performance_metrics(df, thld):
     rauc_val = roc_auc_score(y_true = df['class'], y_score = df['proba_score'])
-    avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Class B')
+    avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Target')
     # precision and recall
-    y_tru = df['class']=='Class B'
+    y_tru = df['class']=='Target'
     y_pre = df['proba_score'] > thld 
     precis_val = precision_score(y_true = y_tru, y_pred = y_pre)
     recall_val = recall_score(y_true = y_tru, y_pred = y_pre) 
