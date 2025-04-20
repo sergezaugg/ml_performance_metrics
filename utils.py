@@ -70,14 +70,18 @@ def get_performance_metrics(df, thld):
     precis_val = precision_score(y_true = y_tru, y_pred = y_pre)
     recall_val = recall_score(y_true = y_tru, y_pred = y_pre) 
     accura_val = accuracy_score(y_true = y_tru, y_pred = y_pre)
+
+    specif_val = recall_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre)) 
+
     # convert to nicely formatted string
     rauc_val = "{:.2f}".format(rauc_val.round(2)) 
     avep_val = "{:.2f}".format(avep_val.round(2))
     precis_val = "{:.2f}".format(np.round(precis_val,2)) 
     recall_val = "{:.2f}".format(np.round(recall_val,2))
     accuracy_val = "{:.2f}".format(np.round(accura_val,2))
+    specificity_val = "{:.2f}".format(np.round(specif_val,2))
     # combine
-    resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val ,  "Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val }
+    resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val ,  "Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val}
     return(resu)                         
 
 
@@ -91,15 +95,16 @@ def frag_show_plot(fig, df_perf_metrics):
         col1.text("Visualize score distribution")
         st.plotly_chart(fig, use_container_width=True)
     with st.container(height=None, border=False, key='conta_03'):
-        col1, col2 = st.columns([0.4, 0.6])
+        col1, col2 = st.columns([0.4, 0.8])
         col1.subheader("Threshold-free metrics")
         col2.subheader("Threshold-dependent metrics")
-        col1, col2, col3, col4, col5, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
+        col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
         col1.metric("ROC-AUC", df_perf_metrics["ROC-AUC"], border=True)
-        col2.metric("Average Precision (AP)", df_perf_metrics["Average Precision"], border=True)
+        col2.metric("Average Precision", df_perf_metrics["Average Precision"], border=True)
         col3.metric("Precision", df_perf_metrics['Precision'], border=True)
-        col4.metric("Recall", df_perf_metrics['Recall'], border=True)
-        col5.metric("Accuracy", df_perf_metrics['Accuracy'], border=True)    
+        col4.metric("Recall (Sensitivity)", df_perf_metrics['Recall'], border=True)
+        col5.metric("Specificity", df_perf_metrics['Specificity'], border=True)  
+        col6.metric("Accuracy", df_perf_metrics['Accuracy'], border=True)     
 
 
 

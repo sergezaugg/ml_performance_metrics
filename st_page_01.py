@@ -11,6 +11,7 @@ import streamlit as st
 from streamlit import session_state as ss
 from utils import make_df,make_fig, make_fig, get_performance_metrics, frag_show_plot
 
+# un.elegant solution to make params more permanent in session
 def store_value():
     ss["upar"]["dth"] = ss["slide_07"]
 

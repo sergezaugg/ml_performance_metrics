@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 # initial value of session state
 if 'upar' not in ss:
     ss["upar"] = {
-        "col_a" : '#FF00AA',
+        "col_a" : '#FF00FF',
         "col_b" : '#6AFF00',
         "dth" : 0.5,
         "N_1" : 1000,
