@@ -27,8 +27,8 @@ def make_one_class_data(N, mu, sigma, class_name):
 
 @st.cache_data
 def make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2):
-    class_name_1 = "Background"
-    class_name_2 = "Target"
+    class_name_1 = "Negative"
+    class_name_2 = "Positive"
     df = pd.concat([
         make_one_class_data(N_1, mu_1, sigma_1, class_name_1) ,
         make_one_class_data(N_2, mu_2, sigma_2, class_name_2) 
@@ -63,9 +63,9 @@ def make_fig(df, dot_colors):
 @st.cache_data
 def get_performance_metrics(df, thld):
     rauc_val = roc_auc_score(y_true = df['class'], y_score = df['proba_score'])
-    avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Target')
+    avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Positive')
     # precision and recall
-    y_tru = df['class']=='Target'
+    y_tru = df['class']=='Positive'
     y_pre = df['proba_score'] > thld 
     precis_val = precision_score(y_true = y_tru, y_pred = y_pre)
     recall_val = recall_score(y_true = y_tru, y_pred = y_pre) 
@@ -101,10 +101,10 @@ def frag_show_plot(fig, df_perf_metrics):
         col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
         col1.metric("ROC-AUC", df_perf_metrics["ROC-AUC"], border=True)
         col2.metric("Average Precision", df_perf_metrics["Average Precision"], border=True)
-        col3.metric("Precision", df_perf_metrics['Precision'], border=True)
-        col4.metric("Recall (Sensitivity)", df_perf_metrics['Recall'], border=True)
-        col5.metric("Specificity", df_perf_metrics['Specificity'], border=True)  
-        col6.metric("Accuracy", df_perf_metrics['Accuracy'], border=True)     
+        col3.metric("Precision", df_perf_metrics['Precision'], border=True, help = "TP / (TP+FP)")
+        col4.metric("Recall (Sensitivity)", df_perf_metrics['Recall'], border=True, help = "TP / (TP+FN)")
+        col5.metric("Specificity", df_perf_metrics['Specificity'], border=True, help = "TN / (TN+FP)")  
+        col6.metric("Accuracy", df_perf_metrics['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)")     
 
 
 
