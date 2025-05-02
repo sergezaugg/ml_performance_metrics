@@ -79,9 +79,19 @@ def make_fig(df, dot_colors):
 
 
 @st.cache_data
-def get_performance_metrics(df, thld):
+def get_metrics_thld_free(df):
     rauc_val = roc_auc_score(y_true = df['class'], y_score = df['proba_score'])
     avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Positive')
+    # convert to nicely formatted string
+    rauc_val = "{:.2f}".format(rauc_val.round(2)) 
+    avep_val = "{:.2f}".format(avep_val.round(2))
+    # combine
+    resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val}
+    return(resu)                         
+
+
+@st.cache_data
+def get_performance_metrics(df, thld):
     # precision and recall
     y_tru = df['class']=='Positive'
     y_pre = df['proba_score'] > thld 
@@ -91,39 +101,35 @@ def get_performance_metrics(df, thld):
     specif_val = recall_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre)) 
     confmat_val = confusion_matrix(y_tru, y_pre)
     # convert to nicely formatted string
-    rauc_val = "{:.2f}".format(rauc_val.round(2)) 
-    avep_val = "{:.2f}".format(avep_val.round(2))
     precis_val = "{:.2f}".format(np.round(precis_val,2)) 
     recall_val = "{:.2f}".format(np.round(recall_val,2))
     accuracy_val = "{:.2f}".format(np.round(accura_val,2))
     specificity_val = "{:.2f}".format(np.round(specif_val,2))
     # combine
-    resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val ,  "Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val,
-            "Confusion matrix" : confmat_val}
-    return(resu)                         
+    resu = {"Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val, "Confusion matrix" : confmat_val}
+    return(resu)                 
 
 
-# @st.fragment
 @st.cache_data
-def show_metrics(df_perf_metrics):
+def show_metrics(df_thld, df_free):
     """
     """  
-    tn_val = df_perf_metrics["Confusion matrix"][0,0]
-    fp_val = df_perf_metrics["Confusion matrix"][0,1]
-    fn_val = df_perf_metrics["Confusion matrix"][1,0]
-    tp_val = df_perf_metrics["Confusion matrix"][1,1]
+    tn_val = df_thld["Confusion matrix"][0,0]
+    fp_val = df_thld["Confusion matrix"][0,1]
+    fn_val = df_thld["Confusion matrix"][1,0]
+    tp_val = df_thld["Confusion matrix"][1,1]
 
     col1, col2 = st.columns([0.8, 0.4])
     col1.subheader("Threshold-dependent metrics")
     col2.subheader("Threshold-free metrics")
     
     col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
-    col1.metric("Precision", df_perf_metrics['Precision'], border=True, help = "TP / (TP+FP)")
-    col2.metric("Recall (Sensitivity)", df_perf_metrics['Recall'], border=True, help = "TP / (TP+FN)")
-    col3.metric("Specificity", df_perf_metrics['Specificity'], border=True, help = "TN / (TN+FP)")  
-    col4.metric("Accuracy", df_perf_metrics['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)") 
-    col5.metric("ROC-AUC", df_perf_metrics["ROC-AUC"], border=True)
-    col6.metric("Average Precision", df_perf_metrics["Average Precision"], border=True)
+    col1.metric("Precision", df_thld['Precision'], border=True, help = "TP / (TP+FP)")
+    col2.metric("Recall (Sensitivity)", df_thld['Recall'], border=True, help = "TP / (TP+FN)")
+    col3.metric("Specificity", df_thld['Specificity'], border=True, help = "TN / (TN+FP)")  
+    col4.metric("Accuracy", df_thld['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)") 
+    col5.metric("ROC-AUC", df_free["ROC-AUC"], border=True)
+    col6.metric("Average Precision", df_free["Average Precision"], border=True)
 
     col1, col2 = st.columns([0.8, 0.4])
     col1.subheader("Confusion matrix") 

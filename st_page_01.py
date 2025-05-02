@@ -9,7 +9,7 @@ import streamlit as st
 import numpy as np
 import streamlit as st
 from streamlit import session_state as ss
-from utils import make_df,make_fig, make_fig, get_performance_metrics, show_metrics, update_ss
+from utils import make_df,make_fig, make_fig, get_performance_metrics, get_metrics_thld_free, show_metrics, update_ss
 
 #-----------------------
 # 1st line 
@@ -56,7 +56,8 @@ with col_a1:
 
 # compute data, get perf metrics, and make plot 
 df = make_df(ss.upar['N_1'], ss.upar['N_2'], ss.upar['mu_1'], ss.upar['mu_2'], ss.upar['sigma_1'], ss.upar['sigma_2'])
-df_perf_metrics = get_performance_metrics(df = df, thld = ss["upar"]["dth"])
+df_metrics_thld = get_performance_metrics(df = df, thld = ss["upar"]["dth"])
+df_metrics_free = get_metrics_thld_free(df = df)
 fig00 = make_fig(df = df, dot_colors = [ss["upar"]["col_a"], ss["upar"]["col_b"]])
 fig00.add_vline(x=ss["upar"]["dth"])
 
@@ -64,7 +65,7 @@ fig00.add_vline(x=ss["upar"]["dth"])
 # display plot and perf metrics 
 with col_a2:
     st.plotly_chart(fig00, use_container_width=True)
-    show_metrics(df_perf_metrics)
+    show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
 
   
 
