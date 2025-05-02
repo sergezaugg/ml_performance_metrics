@@ -13,6 +13,14 @@ import plotly.express as px
 from sklearn.metrics import roc_auc_score, average_precision_score, precision_score, recall_score, accuracy_score, confusion_matrix
 from streamlit import session_state as ss
 
+def update_ss(kname, ssname):
+    """
+    description : helper callback fun to implement statefull apps
+    kname : key name of widget
+    ssname : key name of variable in session state (ss)
+    """
+    ss["upar"][ssname] = ss[kname]      
+
 
 @st.cache_data
 def make_one_class_data(N, mu, sigma, class_name):
