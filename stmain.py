@@ -31,8 +31,8 @@ pg.run()
 
 with st.sidebar:
     st.markdown(":violet[**Explain and understand machine learning performance metrics**]") 
-    st.text("v0.9.3")
-    st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
+    st.text("v1.0.0")
+    st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     st.title(""); st.title(""); st.title(""); st.title("") 
     st.markdown(''':gray[RELATED TOPICS]''')
     st.page_link("https://purenoisefeatures.streamlit.app/", label=":gray[pure-noise-features]")

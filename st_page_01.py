@@ -46,7 +46,7 @@ with col_a1:
         with col_x1: 
             st.text('Negative')
             st.text('Class')
-            ss.upar['N_1']     = st.slider("N",     min_value =  10, max_value=5000,   value=ss.upar['N_1'], label_visibility = "visible", key = "Class_A_001",on_change = store_N1)
+            ss.upar['N_1']     = st.slider("N",     min_value =  10, max_value=5000,   value=ss.upar['N_1'], label_visibility = "visible", key = "Class_A_001", on_change = store_N1)
             ss.upar['mu_1']    = st.slider("Mean",  min_value = 0.03, max_value=0.97,  value=ss.upar['mu_1'],  label_visibility = "visible", key = "Class_A_002", on_change = store_mu1)
             # dynamically compute feasible upper std 
             upper_lim = 0.90*np.sqrt(ss.upar['mu_1']*(1-ss.upar['mu_1'])) 
@@ -71,6 +71,11 @@ with col_a1:
             ss["upar"]["col_a"] = st.color_picker("Negative", ss["upar"]["col_a"]) 
         with c2:
             ss["upar"]["col_b"] = st.color_picker("Positive", ss["upar"]["col_b"])
+            
+    st.text("""
+            * Beta distribution parametrized with mean and standard deviation (S.D.) used for each class. 
+            ° Positive class is the class to be detected.
+            """)        
 
 
 # compute data, get perf metrics, and make plot 
@@ -82,10 +87,18 @@ fig00.add_vline(x=ss["upar"]["dth"])
 # display plot and perf metrics 
 with col_a2:
     frag_show_plot(fig00, df_perf_metrics)
-      
-st.text("""
-        * A Beta distribution parametrized with mean and standard deviation (S.D.) is used for each class. Note that some combinations of mean and S.D. are not feasible for the Beta distribution. 
-        ° Positive class is the class to be detected.
-        """)
+
+  
+
+
+
+
+# st.dataframe(df_perf_metrics["Confusion matrix"], hide_index = False)
+
+# st.markdown('''
+#     :red[Streamlit] :orange[can] :green[write] :blue[text] :violet[in]
+            
+#     :gray[pretty] :rainbow[colors] and :blue-background[highlight] text.''')
+
 
 
