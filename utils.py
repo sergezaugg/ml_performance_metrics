@@ -96,8 +96,18 @@ def get_performance_metrics(df, thld):
     return(resu)                         
 
 
-@st.fragment
-def frag_show_plot(fig, df_perf_metrics):
+@st.cache_data
+def frag_show_plot(fig):
+    """
+    
+    """  
+    st.plotly_chart(fig, use_container_width=True)
+
+  
+
+
+@st.cache_data
+def frag_show_metrics(df_perf_metrics):
     """
     
     """  
@@ -105,10 +115,6 @@ def frag_show_plot(fig, df_perf_metrics):
     fp_val = df_perf_metrics["Confusion matrix"][0,1]
     fn_val = df_perf_metrics["Confusion matrix"][1,0]
     tp_val = df_perf_metrics["Confusion matrix"][1,1]
-
-    # with st.container(border=True, key='conta_02'): # height=475, 
-    col1, col2, _ = st.columns((0.8, 0.5, 0.2))
-    st.plotly_chart(fig, use_container_width=True)
 
     # with st.container(height=None, border=False, key='conta_03'):
     col1, col2 = st.columns([0.8, 0.4])
@@ -131,6 +137,17 @@ def frag_show_plot(fig, df_perf_metrics):
     col1.metric("False Negatives (FN)", fn_val, border=True)
     col2.metric("False Positives (FP)", fp_val, border=True)
     col2.metric("True Positives (TP)", tp_val, border=True) 
+
+
+
+
+
+
+
+
+
+
+
 
 
 

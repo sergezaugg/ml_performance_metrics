@@ -9,7 +9,7 @@ import streamlit as st
 import numpy as np
 import streamlit as st
 from streamlit import session_state as ss
-from utils import make_df,make_fig, make_fig, get_performance_metrics, frag_show_plot
+from utils import make_df,make_fig, make_fig, get_performance_metrics, frag_show_plot, frag_show_metrics
 
 # un.elegant solution to make params more permanent in session
 def store_value():
@@ -86,7 +86,8 @@ fig00.add_vline(x=ss["upar"]["dth"])
 
 # display plot and perf metrics 
 with col_a2:
-    frag_show_plot(fig00, df_perf_metrics)
+    frag_show_plot(fig00)
+    frag_show_metrics(df_perf_metrics)
 
   
 
