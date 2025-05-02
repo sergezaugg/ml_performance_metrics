@@ -73,7 +73,7 @@ def make_fig(df, dot_colors):
     _ = fig00.update_layout(yaxis_title_font_size=25)
     _ = fig00.update_layout(xaxis_tickfont_size=15)
     _ = fig00.update_layout(legend_font_size=20)
-    _ = fig00.update_layout(title_y=0.98)
+    _ = fig00.update_layout(title_y=0.96)
     # 
     return(fig00)
 
@@ -90,7 +90,6 @@ def get_performance_metrics(df, thld):
     accura_val = accuracy_score(y_true = y_tru, y_pred = y_pre)
     specif_val = recall_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre)) 
     confmat_val = confusion_matrix(y_tru, y_pre)
-
     # convert to nicely formatted string
     rauc_val = "{:.2f}".format(rauc_val.round(2)) 
     avep_val = "{:.2f}".format(avep_val.round(2))
@@ -104,21 +103,16 @@ def get_performance_metrics(df, thld):
     return(resu)                         
 
 
-@st.fragment
-def frag_show_plot(fig, df_perf_metrics):
+# @st.fragment
+@st.cache_data
+def show_metrics(df_perf_metrics):
     """
-    
     """  
     tn_val = df_perf_metrics["Confusion matrix"][0,0]
     fp_val = df_perf_metrics["Confusion matrix"][0,1]
     fn_val = df_perf_metrics["Confusion matrix"][1,0]
     tp_val = df_perf_metrics["Confusion matrix"][1,1]
 
-    # with st.container(border=True, key='conta_02'): # height=475, 
-    col1, col2, _ = st.columns((0.8, 0.5, 0.2))
-    st.plotly_chart(fig, use_container_width=True)
-
-    # with st.container(height=None, border=False, key='conta_03'):
     col1, col2 = st.columns([0.8, 0.4])
     col1.subheader("Threshold-dependent metrics")
     col2.subheader("Threshold-free metrics")

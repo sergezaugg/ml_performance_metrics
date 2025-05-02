@@ -9,7 +9,7 @@ import streamlit as st
 import numpy as np
 import streamlit as st
 from streamlit import session_state as ss
-from utils import make_df,make_fig, make_fig, get_performance_metrics, frag_show_plot, update_ss
+from utils import make_df,make_fig, make_fig, get_performance_metrics, show_metrics, update_ss
 
 #-----------------------
 # 1st line 
@@ -60,9 +60,11 @@ df_perf_metrics = get_performance_metrics(df = df, thld = ss["upar"]["dth"])
 fig00 = make_fig(df = df, dot_colors = [ss["upar"]["col_a"], ss["upar"]["col_b"]])
 fig00.add_vline(x=ss["upar"]["dth"])
 
+
 # display plot and perf metrics 
 with col_a2:
-    frag_show_plot(fig00, df_perf_metrics)
+    st.plotly_chart(fig00, use_container_width=True)
+    show_metrics(df_perf_metrics)
 
   
 
