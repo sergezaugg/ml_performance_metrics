@@ -27,7 +27,7 @@ with col_a1:
             ss.upar['mu_1'] = st.slider("Mean", min_value = 0.03, max_value=0.97, value=ss.upar['mu_1'], label_visibility = "visible", key = "Class_A_002", on_change = update_ss, args=["Class_A_002", "mu_1"])
             # dynamically compute feasible upper std 
             upper_lim = 0.90*np.sqrt(ss.upar['mu_1']*(1-ss.upar['mu_1'])) 
-            ss.upar['sigma_1'] = st.slider("S.D.", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_1']),  
+            ss.upar['sigma_1'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_1']),  
                                            label_visibility = "visible", key = "Class_A_003", on_change = update_ss, args=["Class_A_003", "sigma_1"])
         with col_x2: 
             st.text('Positive °')
@@ -36,7 +36,7 @@ with col_a1:
             ss.upar['mu_2']    = st.slider("Mean", min_value = 0.03, max_value=0.97, value=ss.upar['mu_2'], label_visibility = "visible", key = "Class_B_002", on_change=update_ss, args=["Class_B_002", "mu_2"])
             # dynamically compute feasible upper std 
             upper_lim = 0.90*np.sqrt(ss.upar['mu_2']*(1-ss.upar['mu_2'])) 
-            ss.upar['sigma_2'] = st.slider("S.D.", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_2']),  
+            ss.upar['sigma_2'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_2']),  
                                            label_visibility = "visible", key = "Class_B_003", on_change = update_ss, args=["Class_B_003", "sigma_2"])
 
     with st.container(height=None, border=True, key='conta_01b'):
@@ -50,7 +50,7 @@ with col_a1:
             ss["upar"]["col_b"] = st.color_picker("Positive", ss["upar"]["col_b"])
             
     st.text("""
-            * Beta distribution parametrized with mean and standard deviation (S.D.) used for each class. 
+            * Beta distribution parametrized with mean and standard deviation used for each class. 
             ° Positive class is the class to be detected.
             """)        
 

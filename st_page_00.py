@@ -19,14 +19,12 @@ with col_aa:
         :violet[**SUMMARY**]
         
         In applied machine learning projects we must measure the predictive performance of models.
-        Many performance metric exist and data scientists have a clear understanding of what they mean.
-        However, the interpretation of these metrics is not always clear for other domain specialists.
+        Many performance metric exist.
+        The practical interpretation of these metrics is not always trivial.
         Here, I present several usual metrics of predictive performance.
         The tool simulates the predicted score returned by a model for two classes.
-        The score can be manually tuned to assess many relevant scenarios (balanced vs unbalanced classes, good vs bad separation).
+        The score can be manually tuned to assess many relevant scenarios (e.g. balanced vs unbalanced classes, good vs bad separation).
         The score is graphically shown and a decision threshold can be manually adjusted.
-        (Obviously, there is much more than just metrics for the assessment of ML models.
-        But this is out-of-scope for this dashboard.)
         ''')
     
     with st.container(border=True, key='conta_03'):
@@ -34,23 +32,14 @@ with col_aa:
         '''  
         :violet[**APPLICATIONS**]
 
-        With this dashboard, the behavior of performance metrics can be intuitively explained:
+        With this dashboard, the behavior of performance metrics can be intuitively explained.
+        For example:
         * Precision and Recall are complementary
         * Model with a moderate ROC-AUC can still achieve high precision at the cost of a low recall
         * A decision threshold of 0.5 is not always the best choice
         * ROC-AUC is unsensitive to class balance
         * Average Precision is sensitive to class balance
         * Accuracy can be misleading with unbalanced classes
+        * Etc.
         ''')
 
-
-
-
-
-# """
-# True positive rate (TPR) = recall = sensitivity 
-# True negative rate (TNR) = specificity
-# """ 
-
-
-   

@@ -63,7 +63,7 @@ def make_fig(df, dot_colors):
     _ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
     _ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
     _ = fig00.update_traces(marker=dict(size=4))
-    _ = fig00.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
+    _ = fig00.update_layout(xaxis=dict(showgrid=False, zeroline=False), yaxis=dict(showgrid=False, zeroline=False))
     _ = fig00.update_layout(xaxis_range=[-0.01, +1.01])
     _ = fig00.update_layout(paper_bgcolor="#350030",)
     _ = fig00.update_yaxes(showticklabels=False)
