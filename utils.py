@@ -48,8 +48,9 @@ def make_fig(df, dot_colors):
         color_discrete_sequence = dot_colors,
         template='plotly_dark',
         width = 900,
-        height = 370,
-         labels={"proba_score": "Score", "jitter": "Random jitter"},
+        height = 350,
+        labels={"proba_score": "Score", "jitter": "Random jitter"},
+        title = "Visualize score distribution",
         )
     _ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
     _ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
@@ -96,10 +97,10 @@ def frag_show_plot(fig, df_perf_metrics):
     fn_val = df_perf_metrics["Confusion matrix"][1,0]
     tp_val = df_perf_metrics["Confusion matrix"][1,1]
 
-    with st.container(height=475, border=True, key='conta_02'):
-        col1, col2, _ = st.columns((0.8, 0.5, 0.2))
-        col1.text("Visualize score distribution")
-        st.plotly_chart(fig, use_container_width=True)
+    # with st.container(border=True, key='conta_02'): # height=475, 
+    col1, col2, _ = st.columns((0.8, 0.5, 0.2))
+    st.plotly_chart(fig, use_container_width=True)
+
     # with st.container(height=None, border=False, key='conta_03'):
     col1, col2 = st.columns([0.8, 0.4])
     col1.subheader("Threshold-dependent metrics")
