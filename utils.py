@@ -58,6 +58,14 @@ def make_fig(df, dot_colors):
     _ = fig00.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
     _ = fig00.update_layout(xaxis_range=[-0.01, +1.01])
     _ = fig00.update_layout(paper_bgcolor="#350030",)
+    _ = fig00.update_yaxes(showticklabels=False)
+    # text font sizes 
+    _ = fig00.update_layout(title_font_size=25)
+    _ = fig00.update_layout(xaxis_title_font_size=25)
+    _ = fig00.update_layout(yaxis_title_font_size=25)
+    _ = fig00.update_layout(xaxis_tickfont_size=15)
+    _ = fig00.update_layout(legend_font_size=20)
+    # 
     return(fig00)
 
 
