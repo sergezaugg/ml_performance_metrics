@@ -73,7 +73,7 @@ with col_a1:
             ss["upar"]["col_b"] = st.color_picker("Positive", ss["upar"]["col_b"])
             
     st.text("""
-            * A Beta distribution parametrized with mean and standard deviation (S.D.) is used for each class. Note that some combinations of mean and S.D. are not feasible for the Beta distribution. 
+            * Beta distribution parametrized with mean and standard deviation (S.D.) used for each class. 
             ° Positive class is the class to be detected.
             """)        
 
@@ -92,7 +92,7 @@ with col_a2:
 
 
 
-  
+
 # st.dataframe(df_perf_metrics["Confusion matrix"], hide_index = False)
 
 # st.markdown('''

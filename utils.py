@@ -65,6 +65,7 @@ def make_fig(df, dot_colors):
     _ = fig00.update_layout(yaxis_title_font_size=25)
     _ = fig00.update_layout(xaxis_tickfont_size=15)
     _ = fig00.update_layout(legend_font_size=20)
+    _ = fig00.update_layout(title_y=0.98)
     # 
     return(fig00)
 
