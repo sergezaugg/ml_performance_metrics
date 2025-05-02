@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-from sklearn.metrics import roc_auc_score, average_precision_score, precision_score, recall_score, accuracy_score
+from sklearn.metrics import roc_auc_score, average_precision_score, precision_score, recall_score, accuracy_score, confusion_matrix
 from streamlit import session_state as ss
 
 
@@ -70,8 +70,8 @@ def get_performance_metrics(df, thld):
     precis_val = precision_score(y_true = y_tru, y_pred = y_pre)
     recall_val = recall_score(y_true = y_tru, y_pred = y_pre) 
     accura_val = accuracy_score(y_true = y_tru, y_pred = y_pre)
-
     specif_val = recall_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre)) 
+    confmat_val = confusion_matrix(y_tru, y_pre)
 
     # convert to nicely formatted string
     rauc_val = "{:.2f}".format(rauc_val.round(2)) 
@@ -81,7 +81,8 @@ def get_performance_metrics(df, thld):
     accuracy_val = "{:.2f}".format(np.round(accura_val,2))
     specificity_val = "{:.2f}".format(np.round(specif_val,2))
     # combine
-    resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val ,  "Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val}
+    resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val ,  "Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val,
+            "Confusion matrix" : confmat_val}
     return(resu)                         
 
 
@@ -89,22 +90,37 @@ def get_performance_metrics(df, thld):
 def frag_show_plot(fig, df_perf_metrics):
     """
     
-    """
+    """  
+    tn_val = df_perf_metrics["Confusion matrix"][0,0]
+    fp_val = df_perf_metrics["Confusion matrix"][0,1]
+    fn_val = df_perf_metrics["Confusion matrix"][1,0]
+    tp_val = df_perf_metrics["Confusion matrix"][1,1]
+
     with st.container(height=475, border=True, key='conta_02'):
         col1, col2, _ = st.columns((0.8, 0.5, 0.2))
         col1.text("Visualize score distribution")
         st.plotly_chart(fig, use_container_width=True)
-    with st.container(height=None, border=False, key='conta_03'):
-        col1, col2 = st.columns([0.4, 0.8])
-        col1.subheader("Threshold-free metrics")
-        col2.subheader("Threshold-dependent metrics")
-        col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
-        col1.metric("ROC-AUC", df_perf_metrics["ROC-AUC"], border=True)
-        col2.metric("Average Precision", df_perf_metrics["Average Precision"], border=True)
-        col3.metric("Precision", df_perf_metrics['Precision'], border=True, help = "TP / (TP+FP)")
-        col4.metric("Recall (Sensitivity)", df_perf_metrics['Recall'], border=True, help = "TP / (TP+FN)")
-        col5.metric("Specificity", df_perf_metrics['Specificity'], border=True, help = "TN / (TN+FP)")  
-        col6.metric("Accuracy", df_perf_metrics['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)")     
+    # with st.container(height=None, border=False, key='conta_03'):
+    col1, col2 = st.columns([0.8, 0.4])
+    col1.subheader("Threshold-dependent metrics")
+    col2.subheader("Threshold-free metrics")
+    
+    col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
+    col1.metric("Precision", df_perf_metrics['Precision'], border=True, help = "TP / (TP+FP)")
+    col2.metric("Recall (Sensitivity)", df_perf_metrics['Recall'], border=True, help = "TP / (TP+FN)")
+    col3.metric("Specificity", df_perf_metrics['Specificity'], border=True, help = "TN / (TN+FP)")  
+    col4.metric("Accuracy", df_perf_metrics['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)") 
+    col5.metric("ROC-AUC", df_perf_metrics["ROC-AUC"], border=True)
+    col6.metric("Average Precision", df_perf_metrics["Average Precision"], border=True)
+
+    col1, col2 = st.columns([0.8, 0.4])
+    col1.subheader("Confusion matrix") 
+
+    col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
+    col1.metric("True Negatives (TN)", tn_val, border=True)
+    col1.metric("False Negatives (FN)", fn_val, border=True)
+    col2.metric("False Positives (FP)", fp_val, border=True)
+    col2.metric("True Positives (TP)", tp_val, border=True) 
 
 
 
