@@ -13,7 +13,7 @@ from utils import make_df,make_fig, make_fig, get_performance_metrics, get_metri
 
 #-----------------------
 # 1st line 
-col_a1, col_a2, col_space011,= st.columns([0.20, 0.80, 0.10])
+col_a1, col_a2, col_space011,= st.columns([0.20, 0.80, 0.05])
 
 # get user input
 with col_a1: 
@@ -22,7 +22,7 @@ with col_a1:
         col_x1, col_x2, = st.columns([0.50, 0.50])
         with col_x1: 
             st.text('Negative')
-            st.text('Class')
+            # st.text('Class')
             # ss.upar['N_1'] = st.slider("N", min_value =  10, max_value=5000, step=10, value=ss.upar['N_1'], key = "Class_A_001", on_change=update_ss, args=["Class_A_001", "N_1"])
             ss.upar['N_1'] = st.number_input("N", min_value=1, max_value=10000, value=ss.upar['N_1'], step=10, key = "Class_A_001", on_change=update_ss, args=["Class_A_001", "N_1"])
             ss.upar['mu_1'] = st.slider("Mean", min_value = 0.03, max_value=0.97, value=ss.upar['mu_1'], label_visibility = "visible", key = "Class_A_002", on_change = update_ss, args=["Class_A_002", "mu_1"])
@@ -32,7 +32,7 @@ with col_a1:
                                            label_visibility = "visible", key = "Class_A_003", on_change = update_ss, args=["Class_A_003", "sigma_1"])
         with col_x2: 
             st.text('Positive °')
-            st.text('Class')
+            # st.text('Class')
             # ss.upar['N_2']     = st.slider("N", min_value =  10, max_value=5000, step=10, value=ss.upar['N_2'], key = "Class_B_001", on_change=update_ss, args=["Class_B_001", "N_2"])
             ss.upar['N_2'] = st.number_input("N", min_value=1, max_value=10000, value=ss.upar['N_2'], step=10, key = "Class_B_001", on_change=update_ss, args=["Class_B_001", "N_2"])
             ss.upar['mu_2']    = st.slider("Mean", min_value = 0.03, max_value=0.97, value=ss.upar['mu_2'], label_visibility = "visible", key = "Class_B_002", on_change=update_ss, args=["Class_B_002", "mu_2"])
