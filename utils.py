@@ -56,24 +56,28 @@ def make_fig(df, dot_colors):
         color_discrete_sequence = dot_colors,
         template='plotly_dark',
         width = 900,
-        height = 350,
-        labels={"proba_score": "Score", "jitter": "Random jitter"},
-        title = "Visualize score distribution",
+        height = 300,
+        labels={"proba_score": "Score", "jitter": ""},
+        title = "",
         )
     _ = fig00.update_xaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
     _ = fig00.update_yaxes(showline = True, linecolor = 'white', linewidth = 2, row = 1, col = 1, mirror = True)
     _ = fig00.update_traces(marker=dict(size=4))
     _ = fig00.update_layout(xaxis=dict(showgrid=False, zeroline=False), yaxis=dict(showgrid=False, zeroline=False))
-    _ = fig00.update_layout(xaxis_range=[-0.01, +1.01])
-    _ = fig00.update_layout(paper_bgcolor="#350030",)
+    _ = fig00.update_layout(xaxis_range=[-0.00001, +1.00001])
+    _ = fig00.update_layout(paper_bgcolor="#000000") # "#350030"
     _ = fig00.update_yaxes(showticklabels=False)
     # text font sizes 
-    _ = fig00.update_layout(title_font_size=25)
+    # _ = fig00.update_layout(title_font_size=25)
     _ = fig00.update_layout(xaxis_title_font_size=25)
     _ = fig00.update_layout(yaxis_title_font_size=25)
-    _ = fig00.update_layout(xaxis_tickfont_size=15)
+    _ = fig00.update_layout(xaxis_tickfont_size=25)
     _ = fig00.update_layout(legend_font_size=20)
-    _ = fig00.update_layout(title_y=0.96)
+    # _ = fig00.update_layout(title_y=0.96)
+    _ = fig00.update_layout(showlegend=False)
+    _ = fig00.update_layout(yaxis_title=None)
+    _ = fig00.update_layout(margin=dict(t=10, b=10, l=15, r=15))
+    _ = fig00.update_layout(xaxis={'side': 'top'}) # , yaxis={'side': 'right'}  )
     # 
     return(fig00)
 
