@@ -15,13 +15,6 @@ from utils import make_df,make_fig, make_fig, get_performance_metrics, get_metri
 # 1st line 
 col_a1, col_a2, col_space011,= st.columns([0.20, 0.80, 0.10])
 
-
-
-
-# ss.upar['N_1'] = st.number_input("N", min_value=10, max_value=5000, value=ss.upar['N_1'], step=10, key = "Class_A_001", on_change=update_ss, args=["Class_A_001", "N_1"])
-# ss.upar['N_1'] = st.slider("N",    min_value =  10, max_value=5000, step=10, value=ss.upar['N_1'], key = "Class_A_001", on_change=update_ss, args=["Class_A_001", "N_1"])
-
-
 # get user input
 with col_a1: 
     with st.container(height=475, border=True, key='conta_01'):
@@ -48,8 +41,8 @@ with col_a1:
             ss.upar['sigma_2'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_2']),  
                                            label_visibility = "visible", key = "Class_B_003", on_change = update_ss, args=["Class_B_003", "sigma_2"])
 
-    with st.container(height=None, border=True, key='conta_01b'):
-        ss["upar"]["dth"] = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"],  label_visibility = "visible", key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
+    # with st.container(height=None, border=True, key='conta_01b'):
+    #     ss["upar"]["dth"] = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"],  label_visibility = "visible", key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
 
     with st.container(height=None, border=True, key='conta_01c'):
         c1, c2 = st.columns([0.20, 0.20])
@@ -73,7 +66,12 @@ fig00.add_vline(x=ss["upar"]["dth"])
 
 # display plot and perf metrics 
 with col_a2:
-    st.plotly_chart(fig00, use_container_width=True)
+    with st.container(height=None, border=True):
+        st.plotly_chart(fig00, use_container_width=True) 
+        _, c2, _ = st.columns([0.01, 1.00, 0.01])
+        with c2:
+            ss["upar"]["dth"] = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"],  label_visibility = "visible", key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
+
     show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
 
   
