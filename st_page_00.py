@@ -11,7 +11,6 @@ with col_aa:
 
     with st.container(border=True, key='conta_01'):
         st.title(":violet[Explain and understand machine learning performance metrics]") 
-        # st.subheader(":violet[Applied Machine Learning  ---  ML Tutorials  ---  Supervised Classification]") 
 
     with st.container(border=True, key='conta_02'):
         st.markdown(
