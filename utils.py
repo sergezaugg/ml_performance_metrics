@@ -139,11 +139,10 @@ def show_metrics(df_thld, df_free):
     col1.subheader("Confusion matrix") 
 
     col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
-    col1.metric("True Negatives (TN)", tn_val, border=True)
-    col1.metric("False Negatives (FN)", fn_val, border=True)
-    col2.metric("False Positives (FP)", fp_val, border=True)
-    col2.metric("True Positives (TP)", tp_val, border=True) 
-
+    col1.metric("True Negatives (TN)", tn_val, border=True,  help = "Negatives below threshold")
+    col1.metric("False Negatives (FN)", fn_val, border=True, help = "Positives below threshold")
+    col2.metric("False Positives (FP)", fp_val, border=True, help = "Negatives above threshold")
+    col2.metric("True Positives (TP)", tp_val, border=True,  help = "Positives above threshold") 
 
 
 if __name__ == '__main__':
