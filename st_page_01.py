@@ -17,7 +17,7 @@ col_a1, col_a2, col_space011,= st.columns([0.20, 0.80, 0.05])
 
 # get user input
 with col_a1: 
-    with st.container(height=475, border=True):
+    with st.container(height=450, border=True):
         st.text("Simulate score distribution *")
         col_x1, col_x2, = st.columns([0.50, 0.50])
         with col_x1: 
@@ -36,7 +36,8 @@ with col_a1:
             upper_lim = 0.90*np.sqrt(ss.upar['mu_2']*(1-ss.upar['mu_2'])) 
             ss.upar['sigma_2'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_2']),  
                                         label_visibility = "visible", key = "Class_B_003", on_change = update_ss, args=["Class_B_003", "sigma_2"])
-        st.markdown("**\*** Beta distribution parametrized with mean and standard deviation is used for each class." )
+        st.text("")    
+        st.markdown("**\*** Beta distribution." )
                     
     with st.container(height=None, border=True, key='conta_01c'):
         c1, c2 = st.columns([0.20, 0.20])
@@ -46,11 +47,11 @@ with col_a1:
             ss["upar"]["col_b"] = st.color_picker("Positive", ss["upar"]["col_b"])
             
     st.markdown("""
-            **‡** **Negative** class is the combination of all that is not of primary interest, e.g. background noise, general landscape objects.   
+            **‡**   **Negatives** = all that is not of primary interest, e.g. background noise, general landscape objects.   
             
-            **†** **Positive** class is the class to be detected, e.g. call of a bird, person in an image.
+            **†**   **Positives** = items to be detected, e.g. bird calls, persons in an image.
                 
-            In epidemiology and diagnostic tests the **Negative** are the healthy subjects and **Positive** those that have the disease.  
+            In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease.  
             """)        
 
 # compute data, get perf metrics, and make plot 
@@ -62,7 +63,7 @@ fig00.add_vline(x=ss["upar"]["dth"])
 
 # display plot and perf metrics 
 with col_a2:
-    with st.container(height=475, border=True):
+    with st.container(height=450, border=True):
         st.plotly_chart(fig00, use_container_width=True) 
         _, c2, _ = st.columns([0.01, 1.00, 0.01])
         with c2:
