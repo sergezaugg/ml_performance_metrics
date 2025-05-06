@@ -21,8 +21,8 @@ with col_aa:
         Many performance metric exist but their practical interpretation is not always trivial.
         Here, I present several important metrics of predictive performance.
         The tool simulates the predicted score returned by a model for binary classification.
-        The score can be manually tuned to assess many relevant scenarios.
-        The score is graphically shown and a decision threshold can be manually adjusted.
+        The score's ability to separate the classes and the class balance can be manually adjusted to assess many relevant scenarios.
+        The score is graphically shown and the decision threshold can be manually adjusted.
         ''')
     
         st.markdown(
@@ -32,12 +32,12 @@ with col_aa:
         With this dashboard, the behavior of performance metrics can be intuitively explained.
         For example:
         * Precision and Recall are complementary
-        * Specificity and sensitivity are complementary
-        * Model with a moderate ROC-AUC can achieve high precision at the cost of a low recall
+        * Specificity and Sensitivity are complementary
+        * Model with a moderate ROC-AUC can achieve high Precision at the cost of a low Recall
         * A decision threshold of 0.5 is not always a good choice
         * ROC-AUC is unsensitive to class balance
         * Average Precision is sensitive to class balance
-        * Accuracy can be misleading with unbalanced classes
+        * Accuracy is misleading with unbalanced classes
         * Etc.
         ''')
 
