@@ -42,10 +42,10 @@ with col_a1:
     
     c1, c2 = st.columns([0.20, 0.20])
     with c1:
-        with st.container(height=None, border=True):
-            st.text("Choose colors")
-            ss["upar"]["col_a"] = st.color_picker("Negatives", ss["upar"]["col_a"]) 
-            ss["upar"]["col_b"] = st.color_picker("Positives", ss["upar"]["col_b"])
+        # with st.container(height=None, border=True):
+        st.text("Choose colors")
+        ss["upar"]["col_a"] = st.color_picker("Negatives", ss["upar"]["col_a"]) 
+        ss["upar"]["col_b"] = st.color_picker("Positives", ss["upar"]["col_b"])
     # with c2:
 
     st.markdown("""
@@ -54,7 +54,10 @@ with col_a1:
     **†**   **Positives** = items to be detected, e.g. bird calls, persons in an image.
         
     In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease. 
-
+    
+    **PPV** = Positive Predictive Value 
+            
+    **NPV** = Negative Predictive Value
     """)        
             
 
@@ -76,12 +79,12 @@ with col_a2:
                                         key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
     show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
 
-    st.markdown("""
-        **PPV** = positive predictive value 
+    # st.markdown("""
+    #     **PPV** = positive predictive value 
             
-        **NPV** = Negative Predictive Value
-        """)        
+    #     **NPV** = Negative Predictive Value
+    #     """)        
     
 with col_a3:  
-    with st.container(height=450, border=True):
-        show_confusion_matrix(df_thld = df_metrics_thld)
+    # with st.container(height=450, border=True):
+    show_confusion_matrix(df_thld = df_metrics_thld)

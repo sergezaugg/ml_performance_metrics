@@ -37,6 +37,6 @@ with st.sidebar:
     st.markdown(''':gray[RELATED TOPICS]''')
     st.page_link("https://purenoisefeatures.streamlit.app/", label=":gray[pure-noise-features]")
     st.page_link("https://featureimportance.streamlit.app/", label=":gray[feature-importance]")
-    st.page_link("https://scikit-learn.org/stable/api/sklearn.metrics.html/", label=":gray[scikit-learn metrics]")
+    st.page_link("https://scikit-learn.org/stable/api/sklearn.metrics.html", label=":gray[scikit-learn metrics]")
 
     
