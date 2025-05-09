@@ -39,25 +39,25 @@ with col_a1:
         st.text("")    
         st.markdown("**\*** Beta distribution" )
                     
-    with st.container(height=None, border=True):
-        st.text("Choose colors")
-        c1, c2 = st.columns([0.20, 0.20])
-        with c1:
+    
+    c1, c2 = st.columns([0.20, 0.20])
+    with c1:
+        with st.container(height=None, border=True):
+            st.text("Choose colors")
             ss["upar"]["col_a"] = st.color_picker("Negatives", ss["upar"]["col_a"]) 
-        with c2:
             ss["upar"]["col_b"] = st.color_picker("Positives", ss["upar"]["col_b"])
-            
-    st.markdown("""
-            **‡**   **Negatives** = all that is not of primary interest, e.g. background noise, general landscape objects.   
-            
-            **†**   **Positives** = items to be detected, e.g. bird calls, persons in an image.
-                
-            In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease. 
+    # with c2:
 
-            **PPV** = positive predictive value 
-                
-            **NPV** = Negative Predictive Value
-            """)        
+    st.markdown("""
+    **‡**   **Negatives** = all that is not of primary interest, e.g. background noise, general landscape objects.   
+    
+    **†**   **Positives** = items to be detected, e.g. bird calls, persons in an image.
+        
+    In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease. 
+
+    """)        
+            
+
 
 # compute data, get perf metrics, and make plot 
 df = make_df(ss.upar['N_1'], ss.upar['N_2'], ss.upar['mu_1'], ss.upar['mu_2'], ss.upar['sigma_1'], ss.upar['sigma_2'])
@@ -75,6 +75,12 @@ with col_a2:
             ss["upar"]["dth"] = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
                                         key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
     show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
+
+    st.markdown("""
+        **PPV** = positive predictive value 
+            
+        **NPV** = Negative Predictive Value
+        """)        
     
 with col_a3:  
     with st.container(height=450, border=True):

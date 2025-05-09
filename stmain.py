@@ -31,7 +31,7 @@ pg.run()
 
 with st.sidebar:
     st.markdown(":violet[**Explain and understand machine learning performance metrics**]") 
-    st.text("v1.0.5")
+    st.text("v1.1.0")
     st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     st.title(""); st.title(""); st.title(""); st.title("") 
     st.markdown(''':gray[RELATED TOPICS]''')
