@@ -101,17 +101,19 @@ def get_performance_metrics(df, thld):
     y_tru = df['class']=='Positive'
     y_pre = df['proba_score'] > thld 
     precis_val = precision_score(y_true = y_tru, y_pred = y_pre)
+    npv_val = precision_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre))
     recall_val = recall_score(y_true = y_tru, y_pred = y_pre) 
     accura_val = accuracy_score(y_true = y_tru, y_pred = y_pre)
     specif_val = recall_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre)) 
     confmat_val = confusion_matrix(y_tru, y_pre)
     # convert to nicely formatted string
     precis_val = "{:.2f}".format(np.round(precis_val,2)) 
+    npv_val = "{:.2f}".format(np.round(npv_val,2)) 
     recall_val = "{:.2f}".format(np.round(recall_val,2))
     accuracy_val = "{:.2f}".format(np.round(accura_val,2))
     specificity_val = "{:.2f}".format(np.round(specif_val,2))
     # combine
-    resu = {"Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val, "Confusion matrix" : confmat_val}
+    resu = {"Precision" : precis_val , "NPV" : npv_val, "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val, "Confusion matrix" : confmat_val}
     return(resu)                 
 
 
@@ -119,32 +121,38 @@ def get_performance_metrics(df, thld):
 def show_metrics(df_thld, df_free):
     """
     """  
+    col1, col2, col3 = st.columns([0.9, 0.9, 0.4])
+    col1.text("Per-rows metrics")
+    col2.text("Per-columns metrics")
+    col3.text("Accuracy")
+    
+    col1, col2, _, col22, col3, _ , col4, = st.columns([0.4, 0.4, 0.1, 0.4, 0.4, 0.1, 0.4])
+    col1.metric("Specificity", df_thld['Specificity'], border=True, help = "TN / (TN+FP)") 
+    col2.metric("Sensitivity (Recall)", df_thld['Recall'], border=True, help = "TP / (TP+FN)") 
+    col22.metric("NPV", df_thld['NPV'], border=True, help = "TN / (TN+FN)")
+    col3.metric("PPV (Precision)", df_thld['Precision'], border=True, help = "TP / (TP+FP)")
+    col4.metric("Accuracy", df_thld['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)") 
+
+    st.text("Threshold-free metrics")
+    col1, col2, _, col22, col3, _ , col4, = st.columns([0.4, 0.4, 0.1, 0.4, 0.4, 0.1, 0.4])
+    col1.metric("ROC-AUC", df_free["ROC-AUC"], border=True)
+    col2.metric("Average Precision", df_free["Average Precision"], border=True)
+
+   
+@st.cache_data
+def show_confusion_matrix(df_thld):
+    """
+    """  
     tn_val = df_thld["Confusion matrix"][0,0]
     fp_val = df_thld["Confusion matrix"][0,1]
     fn_val = df_thld["Confusion matrix"][1,0]
     tp_val = df_thld["Confusion matrix"][1,1]
-
-    col1, col2 = st.columns([0.8, 0.4])
-    col1.subheader("Threshold-dependent metrics")
-    col2.subheader("Threshold-free metrics")
-    
-    col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
-    col1.metric("Precision", df_thld['Precision'], border=True, help = "TP / (TP+FP)")
-    col2.metric("Recall (Sensitivity)", df_thld['Recall'], border=True, help = "TP / (TP+FN)")
-    col3.metric("Specificity", df_thld['Specificity'], border=True, help = "TN / (TN+FP)")  
-    col4.metric("Accuracy", df_thld['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)") 
-    col5.metric("ROC-AUC", df_free["ROC-AUC"], border=True)
-    col6.metric("Average Precision", df_free["Average Precision"], border=True)
-
-    col1, col2 = st.columns([0.8, 0.4])
-    col1.subheader("Confusion matrix") 
-
-    col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
+    st.text("(3) Confusion matrix") 
+    col1, col2, = st.columns([0.2, 0.2])
     col1.metric("True Negatives (TN)", tn_val, border=True,  help = "Negatives below threshold")
     col1.metric("False Negatives (FN)", fn_val, border=True, help = "Positives below threshold")
     col2.metric("False Positives (FP)", fp_val, border=True, help = "Negatives above threshold")
     col2.metric("True Positives (TP)", tp_val, border=True,  help = "Positives above threshold") 
-
 
 if __name__ == '__main__':
     # test 
@@ -153,4 +161,7 @@ if __name__ == '__main__':
     aaa = make_one_class_data(5000, mu_1, sigma_1, "aaa")
     [aaa['proba_score'].mean().round(2), mu_1]
     [aaa['proba_score'].std().round(2), sigma_1]
+
+
+
 

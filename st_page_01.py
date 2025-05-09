@@ -9,19 +9,19 @@ import streamlit as st
 import numpy as np
 import streamlit as st
 from streamlit import session_state as ss
-from utils import make_df,make_fig, make_fig, get_performance_metrics, get_metrics_thld_free, show_metrics, update_ss
+from utils import make_df, make_fig, get_performance_metrics, get_metrics_thld_free, show_metrics, update_ss, show_confusion_matrix
 
 #-----------------------
 # 1st line 
-col_a1, col_a2, col_space011,= st.columns([0.20, 0.80, 0.05])
+col_a1, col_a2, col_a3,= st.columns([0.20, 0.60, 0.20])
 
 # get user input
 with col_a1: 
     with st.container(height=450, border=True):
-        st.text("Simulate score distribution *")
+        st.text("(1) Simulate score distribution *")
         col_x1, col_x2, = st.columns([0.50, 0.50])
         with col_x1: 
-            st.text('Negatives ‡')
+            st.text('Negatives')
             ss.upar['N_1'] = st.number_input("N", min_value=1, max_value=10000, value=ss.upar['N_1'], step=10, key = "Class_A_001", on_change=update_ss, args=["Class_A_001", "N_1"])
             ss.upar['mu_1'] = st.slider("Mean", min_value = 0.03, max_value=0.97, value=ss.upar['mu_1'], label_visibility = "visible", key = "Class_A_002", on_change = update_ss, args=["Class_A_002", "mu_1"])
             # dynamically compute feasible upper std 
@@ -29,7 +29,7 @@ with col_a1:
             ss.upar['sigma_1'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_1']),  
                                         label_visibility = "visible", key = "Class_A_003", on_change = update_ss, args=["Class_A_003", "sigma_1"])
         with col_x2: 
-            st.text('Positives †')
+            st.text('Positives')
             ss.upar['N_2'] = st.number_input("N", min_value=1, max_value=10000, value=ss.upar['N_2'], step=10, key = "Class_B_001", on_change=update_ss, args=["Class_B_001", "N_2"])
             ss.upar['mu_2']    = st.slider("Mean", min_value = 0.03, max_value=0.97, value=ss.upar['mu_2'], label_visibility = "visible", key = "Class_B_002", on_change=update_ss, args=["Class_B_002", "mu_2"])
             # dynamically compute feasible upper std 
@@ -37,23 +37,33 @@ with col_a1:
             ss.upar['sigma_2'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_2']),  
                                         label_visibility = "visible", key = "Class_B_003", on_change = update_ss, args=["Class_B_003", "sigma_2"])
         st.text("")    
-        st.markdown("**\*** Beta distribution" )
+        
                     
-    with st.container(height=None, border=True, key='conta_01c'):
+    
+    c1, c2 = st.columns([0.20, 0.20])
+    with c1:
+        # with st.container(height=None, border=True):
         st.text("Choose colors")
-        c1, c2 = st.columns([0.20, 0.20])
-        with c1:
-            ss["upar"]["col_a"] = st.color_picker("Negatives", ss["upar"]["col_a"]) 
-        with c2:
-            ss["upar"]["col_b"] = st.color_picker("Positives", ss["upar"]["col_b"])
-            
+        ss["upar"]["col_a"] = st.color_picker("Negatives", ss["upar"]["col_a"]) 
+        ss["upar"]["col_b"] = st.color_picker("Positives", ss["upar"]["col_b"])
+    # with c2:
+
     st.markdown("""
-            **‡**   **Negatives** = all that is not of primary interest, e.g. background noise, general landscape objects.   
+    **Negatives** = all that is not of primary interest, e.g. general landscape   
+    
+    **Positives** = items to be detected, e.g. persons in an image
+        
+    In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease. 
+    
+    **PPV** = Positive Predictive Value 
             
-            **†**   **Positives** = items to be detected, e.g. bird calls, persons in an image.
+    **NPV** = Negative Predictive Value
                 
-            In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease.  
-            """)        
+    **\*** Beta distribution
+                
+    """)        
+            
+
 
 # compute data, get perf metrics, and make plot 
 df = make_df(ss.upar['N_1'], ss.upar['N_2'], ss.upar['mu_1'], ss.upar['mu_2'], ss.upar['sigma_1'], ss.upar['sigma_2'])
@@ -68,8 +78,10 @@ with col_a2:
         st.plotly_chart(fig00, use_container_width=True) 
         _, c2, _ = st.columns([0.01, 1.00, 0.01])
         with c2:
-            ss["upar"]["dth"] = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
-                                          key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
+            ss["upar"]["dth"] = st.slider("(2) Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
+                                        key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
     show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
-
-  
+   
+with col_a3:  
+    # with st.container(height=450, border=True):
+    show_confusion_matrix(df_thld = df_metrics_thld)
