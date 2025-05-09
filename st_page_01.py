@@ -52,7 +52,11 @@ with col_a1:
             
             **†**   **Positives** = items to be detected, e.g. bird calls, persons in an image.
                 
-            In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease.  
+            In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease. 
+
+            **PPV** = positive predictive value 
+                
+            **NPV** = Negative Predictive Value
             """)        
 
 # compute data, get perf metrics, and make plot 

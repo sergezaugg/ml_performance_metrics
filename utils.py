@@ -101,17 +101,19 @@ def get_performance_metrics(df, thld):
     y_tru = df['class']=='Positive'
     y_pre = df['proba_score'] > thld 
     precis_val = precision_score(y_true = y_tru, y_pred = y_pre)
+    npv_val = precision_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre))
     recall_val = recall_score(y_true = y_tru, y_pred = y_pre) 
     accura_val = accuracy_score(y_true = y_tru, y_pred = y_pre)
     specif_val = recall_score(y_true = np.logical_not(y_tru), y_pred = np.logical_not(y_pre)) 
     confmat_val = confusion_matrix(y_tru, y_pre)
     # convert to nicely formatted string
     precis_val = "{:.2f}".format(np.round(precis_val,2)) 
+    npv_val = "{:.2f}".format(np.round(npv_val,2)) 
     recall_val = "{:.2f}".format(np.round(recall_val,2))
     accuracy_val = "{:.2f}".format(np.round(accura_val,2))
     specificity_val = "{:.2f}".format(np.round(specif_val,2))
     # combine
-    resu = {"Precision" : precis_val , "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val, "Confusion matrix" : confmat_val}
+    resu = {"Precision" : precis_val , "NPV" : npv_val, "Recall" : recall_val, "Accuracy" : accuracy_val , "Specificity" : specificity_val, "Confusion matrix" : confmat_val}
     return(resu)                 
 
 
@@ -128,10 +130,14 @@ def show_metrics(df_thld, df_free):
     col1.subheader("Threshold-dependent metrics")
     col2.subheader("Threshold-free metrics")
     
-    col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
-    col1.metric("Precision", df_thld['Precision'], border=True, help = "TP / (TP+FP)")
-    col2.metric("Recall (Sensitivity)", df_thld['Recall'], border=True, help = "TP / (TP+FN)")
-    col3.metric("Specificity", df_thld['Specificity'], border=True, help = "TN / (TN+FP)")  
+
+    col1, col2, col22, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
+    
+    col1.metric("Specificity", df_thld['Specificity'], border=True, help = "TN / (TN+FP)") 
+    col2.metric("Sensitivity (Recall)", df_thld['Recall'], border=True, help = "TP / (TP+FN)") 
+    col22.metric("NPV", df_thld['NPV'], border=True, help = "TN / (TN+FN)")
+    col3.metric("PPV (Precision)", df_thld['Precision'], border=True, help = "TP / (TP+FP)")
+
     col4.metric("Accuracy", df_thld['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)") 
     col5.metric("ROC-AUC", df_free["ROC-AUC"], border=True)
     col6.metric("Average Precision", df_free["Average Precision"], border=True)
@@ -146,6 +152,13 @@ def show_metrics(df_thld, df_free):
     col2.metric("True Positives (TP)", tp_val, border=True,  help = "Positives above threshold") 
 
 
+# PPV and NPV
+
+# Likelihood Ratios
+
+
+# positive predictive value (PPV)
+
 if __name__ == '__main__':
     # test 
     mu_1 = 0.03
@@ -153,4 +166,7 @@ if __name__ == '__main__':
     aaa = make_one_class_data(5000, mu_1, sigma_1, "aaa")
     [aaa['proba_score'].mean().round(2), mu_1]
     [aaa['proba_score'].std().round(2), sigma_1]
+
+
+
 
