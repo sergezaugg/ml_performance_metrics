@@ -139,7 +139,6 @@ def show_metrics(df_thld, df_free):
     col2.metric("Average Precision", df_free["Average Precision"], border=True)
 
    
-
 @st.cache_data
 def show_confusion_matrix(df_thld):
     """
@@ -148,21 +147,12 @@ def show_confusion_matrix(df_thld):
     fp_val = df_thld["Confusion matrix"][0,1]
     fn_val = df_thld["Confusion matrix"][1,0]
     tp_val = df_thld["Confusion matrix"][1,1]
-    st.subheader("Confusion matrix") 
+    st.text("(3) Confusion matrix") 
     col1, col2, = st.columns([0.2, 0.2])
     col1.metric("True Negatives (TN)", tn_val, border=True,  help = "Negatives below threshold")
     col1.metric("False Negatives (FN)", fn_val, border=True, help = "Positives below threshold")
     col2.metric("False Positives (FP)", fp_val, border=True, help = "Negatives above threshold")
     col2.metric("True Positives (TP)", tp_val, border=True,  help = "Positives above threshold") 
-
-
-
-# PPV and NPV
-
-# Likelihood Ratios
-
-
-# positive predictive value (PPV)
 
 if __name__ == '__main__':
     # test 
