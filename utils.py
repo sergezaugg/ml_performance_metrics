@@ -121,11 +121,6 @@ def get_performance_metrics(df, thld):
 def show_metrics(df_thld, df_free):
     """
     """  
-    tn_val = df_thld["Confusion matrix"][0,0]
-    fp_val = df_thld["Confusion matrix"][0,1]
-    fn_val = df_thld["Confusion matrix"][1,0]
-    tp_val = df_thld["Confusion matrix"][1,1]
-
     col1, col2, col3, col4 = st.columns([0.5, 0.5, 0.3, 0.4])
     col1.text("Per-rows metrics")
     col2.text("Per-columns metrics")
@@ -141,14 +136,23 @@ def show_metrics(df_thld, df_free):
     col5.metric("ROC-AUC", df_free["ROC-AUC"], border=True)
     col6.metric("Average Precision", df_free["Average Precision"], border=True)
 
-    col1, col2 = st.columns([0.8, 0.4])
-    col1.subheader("Confusion matrix") 
+   
 
-    col1, col2, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
+@st.cache_data
+def show_confusion_matrix(df_thld):
+    """
+    """  
+    tn_val = df_thld["Confusion matrix"][0,0]
+    fp_val = df_thld["Confusion matrix"][0,1]
+    fn_val = df_thld["Confusion matrix"][1,0]
+    tp_val = df_thld["Confusion matrix"][1,1]
+    st.subheader("Confusion matrix") 
+    col1, col2, = st.columns([0.2, 0.2])
     col1.metric("True Negatives (TN)", tn_val, border=True,  help = "Negatives below threshold")
     col1.metric("False Negatives (FN)", fn_val, border=True, help = "Positives below threshold")
     col2.metric("False Positives (FP)", fp_val, border=True, help = "Negatives above threshold")
     col2.metric("True Positives (TP)", tp_val, border=True,  help = "Positives above threshold") 
+
 
 
 # PPV and NPV

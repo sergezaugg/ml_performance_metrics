@@ -9,11 +9,11 @@ import streamlit as st
 import numpy as np
 import streamlit as st
 from streamlit import session_state as ss
-from utils import make_df,make_fig, make_fig, get_performance_metrics, get_metrics_thld_free, show_metrics, update_ss
+from utils import make_df, make_fig, get_performance_metrics, get_metrics_thld_free, show_metrics, update_ss, show_confusion_matrix
 
 #-----------------------
 # 1st line 
-col_a1, col_a2, col_space011,= st.columns([0.20, 0.80, 0.05])
+col_a1, col_a2, col_a3,= st.columns([0.20, 0.60, 0.20])
 
 # get user input
 with col_a1: 
@@ -39,7 +39,7 @@ with col_a1:
         st.text("")    
         st.markdown("**\*** Beta distribution" )
                     
-    with st.container(height=None, border=True, key='conta_01c'):
+    with st.container(height=None, border=True):
         st.text("Choose colors")
         c1, c2 = st.columns([0.20, 0.20])
         with c1:
@@ -73,7 +73,9 @@ with col_a2:
         _, c2, _ = st.columns([0.01, 1.00, 0.01])
         with c2:
             ss["upar"]["dth"] = st.slider("Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
-                                          key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
+                                        key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
     show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
-
-  
+    
+with col_a3:  
+    with st.container(height=450, border=True):
+        show_confusion_matrix(df_thld = df_metrics_thld)
