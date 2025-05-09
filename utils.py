@@ -126,18 +126,17 @@ def show_metrics(df_thld, df_free):
     fn_val = df_thld["Confusion matrix"][1,0]
     tp_val = df_thld["Confusion matrix"][1,1]
 
-    col1, col2 = st.columns([0.8, 0.4])
-    col1.subheader("Threshold-dependent metrics")
-    col2.subheader("Threshold-free metrics")
-    
+    col1, col2, col3, col4 = st.columns([0.5, 0.5, 0.3, 0.4])
+    col1.text("Per-rows metrics")
+    col2.text("Per-columns metrics")
+    col3.text("Accuracy")
+    col4.text("Threshold-free metrics")
 
-    col1, col2, col22, col3, col4, col5, col6, = st.columns([0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2])
-    
+    col1, col2, _, col22, col3, _ , col4, _, col5, col6, = st.columns([0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.2, 0.1, 0.2, 0.2,])
     col1.metric("Specificity", df_thld['Specificity'], border=True, help = "TN / (TN+FP)") 
     col2.metric("Sensitivity (Recall)", df_thld['Recall'], border=True, help = "TP / (TP+FN)") 
     col22.metric("NPV", df_thld['NPV'], border=True, help = "TN / (TN+FN)")
     col3.metric("PPV (Precision)", df_thld['Precision'], border=True, help = "TP / (TP+FP)")
-
     col4.metric("Accuracy", df_thld['Accuracy'], border=True, help = "(TP+TN) / (TP+TN+FP+FN)") 
     col5.metric("ROC-AUC", df_free["ROC-AUC"], border=True)
     col6.metric("Average Precision", df_free["Average Precision"], border=True)
