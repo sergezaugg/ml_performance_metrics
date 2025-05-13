@@ -23,6 +23,7 @@ with col_aa:
         The tool simulates the predicted score returned by a model for binary classification.
         The score's ability to separate the classes and the class balance can be manually adjusted to assess many relevant scenarios.
         The score is graphically shown and the decision threshold can be manually adjusted.
+        In epidemiology we typically define healthy subjects as **Negatives** and subjects with disease as **Positives**.
         ''')
     
         st.markdown(
@@ -41,3 +42,10 @@ with col_aa:
         * Etc.
         ''')
 
+        st.markdown(
+        '''
+        :violet[**DETAILS**]  
+        
+        * Beta distribution is used to simulate the scores 
+
+        ''')

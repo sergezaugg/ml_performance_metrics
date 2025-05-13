@@ -78,7 +78,7 @@ def make_fig(df, dot_colors):
     _ = fig00.update_layout(showlegend=False)
     _ = fig00.update_layout(yaxis_title=None)
     _ = fig00.update_layout(margin=dict(t=10, b=10, l=15, r=15))
-    _ = fig00.update_layout(xaxis={'side': 'top'}) # , yaxis={'side': 'right'}  )
+    # _ = fig00.update_layout(xaxis={'side': 'top'}) # , yaxis={'side': 'right'}  )
     # 
     return(fig00)
 
@@ -148,11 +148,16 @@ def show_confusion_matrix(df_thld):
     fn_val = df_thld["Confusion matrix"][1,0]
     tp_val = df_thld["Confusion matrix"][1,1]
     st.text("(3) Confusion matrix") 
+    st.text("  ") 
+    st.text("  ") 
+    st.text("  ") 
+    st.text("  ") 
+    st.text("  ") 
     col1, col2, = st.columns([0.2, 0.2])
-    col1.metric("True Negatives (TN)", tn_val, border=True,  help = "Negatives below threshold")
-    col1.metric("False Negatives (FN)", fn_val, border=True, help = "Positives below threshold")
-    col2.metric("False Positives (FP)", fp_val, border=True, help = "Negatives above threshold")
-    col2.metric("True Positives (TP)", tp_val, border=True,  help = "Positives above threshold") 
+    col1.metric("TN", tn_val, border=True, help = "Negatives below threshold")
+    col1.metric("FN", fn_val, border=True, help = "Positives below threshold")
+    col2.metric("FP", fp_val, border=True, help = "Negatives above threshold")
+    col2.metric("TP", tp_val, border=True, help = "Positives above threshold") 
 
 if __name__ == '__main__':
     # test 

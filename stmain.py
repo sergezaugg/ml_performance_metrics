@@ -31,17 +31,16 @@ pg.run()
 
 with st.sidebar:
     st.markdown(":violet[**Explain and understand machine learning performance metrics**]") 
-    st.text("v1.1.0")
+    st.text("v1.1.1")
     st.title(""); 
     st.markdown("**QUICK GUIDE**") 
-    st.markdown("**(1)** Finetune score distribution of two classes") 
-    st.markdown("**(2)** Set position of decision threshold") 
-    st.markdown("**(3)** See result in confusion matrix") 
+    st.markdown("**(1)** Finetune score distribution") 
+    st.markdown("**(2)** Set decision threshold") 
+    st.markdown("**(3)** Check confusion matrix") 
     st.markdown("**(4)** See effect on metrics") 
     st.title(""); st.title(""); st.title(""); st.title("")
     st.markdown(''':gray[RELATED TOPICS]''')
     st.page_link("https://purenoisefeatures.streamlit.app/", label=":gray[pure-noise-features]")
-    st.page_link("https://featureimportance.streamlit.app/", label=":gray[feature-importance]")
     st.page_link("https://scikit-learn.org/stable/api/sklearn.metrics.html", label=":gray[scikit-learn metrics]")
 
     
