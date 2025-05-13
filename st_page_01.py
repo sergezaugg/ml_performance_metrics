@@ -13,12 +13,12 @@ from utils import make_df, make_fig, get_performance_metrics, get_metrics_thld_f
 
 #-----------------------
 # 1st line 
-col_a1, col_a2, col_a3,= st.columns([0.20, 0.60, 0.20])
+col_a1, col_a2, col_a3,= st.columns([0.25, 0.60, 0.25])
 
 # get user input
 with col_a1: 
-    with st.container(height=450, border=True):
-        st.text("(1) Simulate score distribution *")
+    with st.container(height=480, border=True):
+        st.text("(1) Simulate score distribution")
         col_x1, col_x2, = st.columns([0.50, 0.50])
         with col_x1: 
             st.text('Negatives')
@@ -28,6 +28,7 @@ with col_a1:
             upper_lim = 0.90*np.sqrt(ss.upar['mu_1']*(1-ss.upar['mu_1'])) 
             ss.upar['sigma_1'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_1']),  
                                         label_visibility = "visible", key = "Class_A_003", on_change = update_ss, args=["Class_A_003", "sigma_1"])
+            ss["upar"]["col_a"] = st.color_picker("Color", ss["upar"]["col_a"])   
         with col_x2: 
             st.text('Positives')
             ss.upar['N_2'] = st.number_input("N", min_value=1, max_value=10000, value=ss.upar['N_2'], step=10, key = "Class_B_001", on_change=update_ss, args=["Class_B_001", "N_2"])
@@ -36,32 +37,10 @@ with col_a1:
             upper_lim = 0.90*np.sqrt(ss.upar['mu_2']*(1-ss.upar['mu_2'])) 
             ss.upar['sigma_2'] = st.slider("Standard Deviation", min_value = 0.03, max_value=upper_lim, value=min(upper_lim, ss.upar['sigma_2']),  
                                         label_visibility = "visible", key = "Class_B_003", on_change = update_ss, args=["Class_B_003", "sigma_2"])
-        st.text("")    
-        
-                    
-    
-    c1, c2 = st.columns([0.20, 0.20])
-    with c1:
-        # with st.container(height=None, border=True):
-        st.text("Choose colors")
-        ss["upar"]["col_a"] = st.color_picker("Negatives", ss["upar"]["col_a"]) 
-        ss["upar"]["col_b"] = st.color_picker("Positives", ss["upar"]["col_b"])
-    # with c2:
+            ss["upar"]["col_b"] = st.color_picker("Color", ss["upar"]["col_b"])
 
-    st.markdown("""
-    **Negatives** = all that is not of primary interest, e.g. general landscape   
-    
-    **Positives** = items to be detected, e.g. persons in an image
-        
-    In epidemiology **Negatives** = healthy subjects and **Positives** = subjects with disease. 
-    
-    **PPV** = Positive Predictive Value 
-            
-    **NPV** = Negative Predictive Value
-                
-    **\*** Beta distribution
-                
-    """)        
+
+ 
             
 
 
@@ -74,14 +53,51 @@ fig00.add_vline(x=ss["upar"]["dth"])
 
 # display plot and perf metrics 
 with col_a2:
-    with st.container(height=450, border=True):
-        st.plotly_chart(fig00, use_container_width=True) 
-        _, c2, _ = st.columns([0.01, 1.00, 0.01])
+    with st.container(height=480, border=True):
+   
+        _, c2, _ = st.columns([0.01, 1.00, 0.015])
         with c2:
+            st.text("(2) Decision threshold")
             ss["upar"]["dth"] = st.slider("(2) Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
-                                        key="slide_07", on_change=update_ss, args=["slide_07", "dth"])
-    show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
+                                        key="slide_07", on_change=update_ss, args=["slide_07", "dth"], label_visibility= "hidden")
+        st.plotly_chart(fig00, use_container_width=True)    
+
+#     show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
    
 with col_a3:  
-    # with st.container(height=450, border=True):
-    show_confusion_matrix(df_thld = df_metrics_thld)
+    with st.container(height=480, border=True):
+        show_confusion_matrix(df_thld = df_metrics_thld)
+
+
+
+#-----------------------
+# 2nd line 
+col_b1, col_b2,= st.columns([0.25, 0.85])
+
+with col_b1:
+    with st.container(height=400, border=True): 
+        st.markdown("""
+        **Positives** = items to be detected
+                    
+        **Negatives** = items not of interest 
+                    
+        **TP** = True Positives
+                    
+        **TN** = True Negatives
+                    
+        **FP** = False Positives 
+                    
+        **FN** = False Negatives 
+                    
+        **PPV** = Positive Predictive Value  
+                    
+        **NPV** = Negative Predictive Value
+                    
+        """)        
+
+with col_b2: 
+    with st.container(height=400,border=True): 
+        show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
+    
+
+
