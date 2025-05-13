@@ -39,11 +39,6 @@ with col_a1:
                                         label_visibility = "visible", key = "Class_B_003", on_change = update_ss, args=["Class_B_003", "sigma_2"])
             ss["upar"]["col_b"] = st.color_picker("Color", ss["upar"]["col_b"])
 
-
- 
-            
-
-
 # compute data, get perf metrics, and make plot 
 df = make_df(ss.upar['N_1'], ss.upar['N_2'], ss.upar['mu_1'], ss.upar['mu_2'], ss.upar['sigma_1'], ss.upar['sigma_2'])
 df_metrics_thld = get_performance_metrics(df = df, thld = ss["upar"]["dth"])
@@ -61,14 +56,10 @@ with col_a2:
             ss["upar"]["dth"] = st.slider("(2) Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
                                         key="slide_07", on_change=update_ss, args=["slide_07", "dth"], label_visibility= "hidden")
         st.plotly_chart(fig00, use_container_width=True)    
-
-#     show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
-   
+ 
 with col_a3:  
     with st.container(height=480, border=True):
         show_confusion_matrix(df_thld = df_metrics_thld)
-
-
 
 #-----------------------
 # 2nd line 
