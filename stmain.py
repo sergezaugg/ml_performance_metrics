@@ -37,7 +37,7 @@ with st.sidebar:
     st.header("")
     c1,c2=st.columns([80,200])
     c1.image(image='pics/z_logo_violet.png', width=65)
-    c2.markdown(''':primary[v1.0.1]  
+    c2.markdown(''':primary[v1.1.2]  
     :primary[Created by]
     :primary[[Serge Zaugg](https://github.com/sergezaugg)]''')
     st.logo(image='pics/z_logo_violet.png', size="large", link="https://github.com/sergezaugg")
