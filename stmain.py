@@ -40,7 +40,7 @@ with st.sidebar:
     c1.image(image='pics/z_logo_violet.png', width=65)
     c2.markdown(''':violet[v1.1.3]  
     :violet[Created by]
-    :violet[[Serge Zaugg](https://www.linkedin.com/in/dkifh34rtn345eb5fhrthdbgf45)]
+    :violet[[Serge Zaugg](https://www.linkedin.com/in/dkifh34rtn345eb5fhrthdbgf45)]     
     :primary[[Pollito-ML](https://github.com/sergezaugg)]
     ''')
     st.logo(image='pics/z_logo_violet.png', size="large", link="https://github.com/sergezaugg")
