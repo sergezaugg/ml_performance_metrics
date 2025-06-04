@@ -30,7 +30,7 @@ pg = st.navigation([p1, p0])
 pg.run()
 
 with st.sidebar:
-    st.markdown(":violet[**Explain and understand machine learning performance metrics**]") 
+    st.markdown(":violet[**Illustration of machine learning performance metrics and diagnostic tests**]") 
     st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     # logos an links
