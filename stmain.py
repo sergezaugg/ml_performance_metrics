@@ -30,16 +30,19 @@ pg = st.navigation([p1, p0])
 pg.run()
 
 with st.sidebar:
-    st.markdown(":violet[**Explain and understand machine learning performance metrics**]") 
-    st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
-    st.title(""); st.title(""); st.title(""); st.title(""); st.title(""); st.title("") 
+    st.markdown(":violet[**Illustration of machine learning performance metrics and diagnostic tests**]") 
+    st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
+    st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     # logos an links
     st.header("")
     c1,c2=st.columns([80,200])
+    c1.text("")
     c1.image(image='pics/z_logo_violet.png', width=65)
-    c2.markdown(''':primary[v1.1.2]  
-    :primary[Created by]
-    :primary[[Serge Zaugg](https://github.com/sergezaugg)]''')
+    c2.markdown(''':violet[v1.1.3]  
+    :violet[Created by]
+    :violet[[Serge Zaugg](https://www.linkedin.com/in/dkifh34rtn345eb5fhrthdbgf45)]
+    :primary[[Pollito-ML](https://github.com/sergezaugg)]
+    ''')
     st.logo(image='pics/z_logo_violet.png', size="large", link="https://github.com/sergezaugg")
 
        

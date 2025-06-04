@@ -66,7 +66,7 @@ with col_a3:
 col_b1, col_b2,= st.columns([0.25, 0.85])
 
 with col_b1:
-    with st.container(height=400, border=True): 
+    with st.container(height=360, border=True): 
         st.markdown("""
         **Positives** = items to be detected
                     
@@ -87,7 +87,7 @@ with col_b1:
         """)        
 
 with col_b2: 
-    with st.container(height=400,border=True): 
+    with st.container(height=360,border=True): 
         show_metrics(df_thld = df_metrics_thld, df_free = df_metrics_free)
     
 
