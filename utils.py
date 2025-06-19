@@ -85,8 +85,8 @@ def get_metrics_thld_free(df):
     rauc_val = roc_auc_score(y_true = df['class'], y_score = df['proba_score'])
     avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Positive')
     # convert to nicely formatted string
-    rauc_val = "{:.2f}".format(rauc_val.round(2)) 
-    avep_val = "{:.2f}".format(avep_val.round(2))
+    rauc_val = "{:.2f}".format(round(rauc_val,2)) 
+    avep_val = "{:.2f}".format(round(avep_val,2))
     # combine
     resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val}
     return(resu)                         

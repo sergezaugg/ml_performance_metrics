@@ -16,6 +16,7 @@ The score is graphically shown and a decision threshold can be manually adjusted
 * Developed under Python 3.12.8
 * First make a venv, then:
 * pip install -r requirements.txt
+* pip install --upgrade -r requirements.txt
 
 **USAGE**
 * Clone or download the repo
