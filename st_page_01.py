@@ -18,7 +18,7 @@ col_a1, col_a2, col_a3,= st.columns([0.25, 0.60, 0.25])
 # get user input
 with col_a1: 
     with st.container(height=480, border=True):
-        st.text("(1) Simulate score distribution")
+        st.text("Simulate score distribution")
         col_x1, col_x2, = st.columns([0.50, 0.50])
         with col_x1: 
             st.text('Negatives')
@@ -52,7 +52,7 @@ with col_a2:
    
         _, c2, _ = st.columns([0.01, 1.00, 0.015])
         with c2:
-            st.text("(2) Decision threshold")
+            st.text("Set Decision threshold")
             ss["upar"]["dth"] = st.slider("(2) Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
                                         key="slide_07", on_change=update_ss, args=["slide_07", "dth"], label_visibility= "hidden")
         st.plotly_chart(fig00, use_container_width=True)    
@@ -67,24 +67,7 @@ col_b1, col_b2,= st.columns([0.25, 0.85])
 
 with col_b1:
     with st.container(height=360, border=True): 
-        st.markdown("""
-        **Positives** = items to be detected
-                    
-        **Negatives** = items not of interest 
-                    
-        **TP** = True Positives
-                    
-        **TN** = True Negatives
-                    
-        **FP** = False Positives 
-                    
-        **FN** = False Negatives 
-                    
-        **PPV** = Positive Predictive Value  
-                    
-        **NPV** = Negative Predictive Value
-                    
-        """)        
+        st.markdown(""" """)        
 
 with col_b2: 
     with st.container(height=360,border=True): 

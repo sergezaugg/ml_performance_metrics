@@ -5,10 +5,8 @@ backgroundColor="#000000"
 secondaryBackgroundColor="#350030"
 textColor="#ffffff"
 font="sans serif"
-linkColor="violet"
+linkColor="#ffffff"
 codeBackgroundColor="#000000"
 baseRadius = "0.5rem"
 showWidgetBorder = true
 # baseFontSize = 20
-
-

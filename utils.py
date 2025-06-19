@@ -3,13 +3,10 @@
 # Description : Streamlit function and fragments are here
 #--------------------
 
-import numpy as np
 import streamlit as st
 import plotly.express as px
 import numpy as np
 import pandas as pd
-import streamlit as st
-import plotly.express as px
 from sklearn.metrics import roc_auc_score, average_precision_score, precision_score, recall_score, accuracy_score, confusion_matrix
 from streamlit import session_state as ss
 
@@ -88,8 +85,8 @@ def get_metrics_thld_free(df):
     rauc_val = roc_auc_score(y_true = df['class'], y_score = df['proba_score'])
     avep_val = average_precision_score(y_true = df['class'], y_score = df['proba_score'], pos_label='Positive')
     # convert to nicely formatted string
-    rauc_val = "{:.2f}".format(rauc_val.round(2)) 
-    avep_val = "{:.2f}".format(avep_val.round(2))
+    rauc_val = "{:.2f}".format(round(rauc_val,2)) 
+    avep_val = "{:.2f}".format(round(avep_val,2))
     # combine
     resu = {"ROC-AUC" : rauc_val,  "Average Precision" : avep_val}
     return(resu)                         
@@ -147,7 +144,7 @@ def show_confusion_matrix(df_thld):
     fp_val = df_thld["Confusion matrix"][0,1]
     fn_val = df_thld["Confusion matrix"][1,0]
     tp_val = df_thld["Confusion matrix"][1,1]
-    st.text("(3) Confusion matrix") 
+    st.text("Confusion matrix") 
     st.text("  ") 
     st.text("  ") 
     st.text("  ") 
