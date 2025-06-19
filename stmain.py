@@ -31,7 +31,6 @@ pg.run()
 
 with st.sidebar:
     st.markdown(":violet[**Illustration of machine learning performance metrics and diagnostic tests**]") 
-    # st.title(""); st.title(""); st.title(""); st.title(""); st.title("")
     st.title("")
     with st.container(border=True): 
         st.markdown("""

@@ -17,7 +17,7 @@ with col_aa:
         '''    
         :violet[**SUMMARY**]
         
-        In applied machine learning we must measure the predictive performance of models.
+        In applied machine learning we measure the predictive performance of models.
         Many performance metric exist but their practical interpretation is not always trivial.
         Here, I present several important metrics of predictive performance.
         The tool simulates the predicted score returned by a model for binary classification.
@@ -39,7 +39,6 @@ with col_aa:
         * ROC-AUC is unsensitive to class balance
         * Average Precision is sensitive to class balance
         * Accuracy is misleading with unbalanced classes
-        * Etc.
         ''')
 
         st.markdown(
