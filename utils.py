@@ -144,7 +144,7 @@ def show_confusion_matrix(df_thld):
     fp_val = df_thld["Confusion matrix"][0,1]
     fn_val = df_thld["Confusion matrix"][1,0]
     tp_val = df_thld["Confusion matrix"][1,1]
-    st.text("(3) Confusion matrix") 
+    st.text("Confusion matrix") 
     st.text("  ") 
     st.text("  ") 
     st.text("  ") 
