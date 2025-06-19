@@ -3,13 +3,10 @@
 # Description : Streamlit function and fragments are here
 #--------------------
 
-import numpy as np
 import streamlit as st
 import plotly.express as px
 import numpy as np
 import pandas as pd
-import streamlit as st
-import plotly.express as px
 from sklearn.metrics import roc_auc_score, average_precision_score, precision_score, recall_score, accuracy_score, confusion_matrix
 from streamlit import session_state as ss
 
