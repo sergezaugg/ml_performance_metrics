@@ -29,7 +29,10 @@ with st.container(border=True):
     with c2:
         ss["upar"]["dth"] = st.slider(label ="Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
             key="slide_07", on_change=update_ss, args=["slide_07", "dth"], label_visibility = "visible")
-    st.plotly_chart(fig00, use_container_width=True)    
+    st.plotly_chart(fig00, use_container_width=True, config={"displayModeBar": False})    
+
+
+
  
 #-----------------------
 # 2nd line 

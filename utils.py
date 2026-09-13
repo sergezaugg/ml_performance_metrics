@@ -74,8 +74,9 @@ def make_fig(df, dot_colors):
     # _ = fig00.update_layout(title_y=0.96)
     _ = fig00.update_layout(showlegend=False)
     _ = fig00.update_layout(yaxis_title=None)
-    _ = fig00.update_layout(margin=dict(t=10, b=10, l=15, r=15))
+    _ = fig00.update_layout(margin=dict(t=10, b=10, l=30, r=30))
     # _ = fig00.update_layout(xaxis={'side': 'top'}) # , yaxis={'side': 'right'}  )
+    _ = fig00.update_xaxes(tickmode="linear",tick0=0,dtick=0.1, tickformat=".1f")
     # 
     return(fig00)
 
