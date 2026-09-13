@@ -32,7 +32,7 @@ pg = st.navigation([p1, p0])
 pg.run()
 
 with st.sidebar:
-    st.markdown(":violet[**Illustration of machine learning performance metrics and diagnostic tests**]") 
+    st.markdown(":violet[**Interactive Guide to Machine Learning Performance Metrics**]") 
 
     with st.container(border=True):
         st.text("Simulate score distribution")
