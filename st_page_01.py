@@ -12,11 +12,9 @@ from streamlit import session_state as ss
 from utils import make_df, make_fig, get_performance_metrics, get_metrics_thld_free, show_metrics, update_ss
 from utils import show_tf_metrics, show_confusion_matrix
 
-
 col_aa, col_bb, = st.columns([1.00,  0.20])
 
 with col_aa: 
-
 
     #-----------------------
     # 1st line 
@@ -29,7 +27,7 @@ with col_aa:
     fig00.add_vline(x=ss["upar"]["dth"])
 
     # display plot and perf metrics 
-    with st.container(border=True):
+    with st.container(border=True, height = 420):
 
         _, c2, _ = st.columns([0.010, 1.00, 0.015])
         with c2:
@@ -37,52 +35,43 @@ with col_aa:
                 key="slide_07", on_change=update_ss, args=["slide_07", "dth"], label_visibility = "visible")
         st.plotly_chart(fig00, use_container_width=True, config={"displayModeBar": False})    
 
-
-
-    
     #-----------------------
     # 2nd line 
     col_b0, col_b1, col_b2,= st.columns([0.28, 0.43, 0.80])
 
     with col_b0:
-        with st.container(border=True): 
+        with st.container(border=True, height = 320): 
             show_tf_metrics(df_free = df_metrics_free) 
 
     with col_b1:
-        with st.container(border=True): 
+        with st.container(border=True, height = 320): 
             show_confusion_matrix(df_thld = df_metrics_thld) 
 
     with col_b2: 
-        with st.container(border=True): 
+        with st.container(border=True, height = 320): 
             show_metrics(df_thld = df_metrics_thld)
         
-
 with col_bb: 
 
-    with st.container(border=True): 
-        st.markdown("""
-        ### Terminology:              
-        **Positives**  
-        items to be detected  
+    with st.container(border=True, height = 750): 
+        st.caption("""
+        Terminology:    
+                 
+        **Positives:** Items to be detected  
 
-        **Negatives**  
-        items not of interest 
+        **Negatives:** Items not of interest 
 
-        **TP**  
-        True Positives  
+        **TP:** True Positives  
 
-        **TN**   
-        True Negatives 
+        **TN:** True Negatives 
 
-        **FP**    
-        False Positives  
+        **FP:** False Positives  
 
-        **FN**    
-        False Negatives  
+        **FN:** False Negatives  
 
-        **PPV**    
-        Positive Predictive Value 
+        **PPV:** Positive Predictive Value 
 
-        **NPV**   
-        Negative Predictive Value  
-        """)        
+        **NPV:** Negative Predictive Value  
+        """)    
+        
+            

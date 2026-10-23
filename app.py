@@ -10,9 +10,31 @@ from utils import update_ss
 import numpy as np
 from resources.styles import apply_global_styles
 
-st.set_page_config(layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(layout="wide", initial_sidebar_state="expanded", page_title="ML metrics", page_icon='pics/z_logo_violet.png')
 apply_global_styles() # apply custom CSS styles 
 
+# change color of navigation bar background       
+st.markdown("""
+    <style>
+    .stAppHeader {background-color: #000000;}
+    </style>
+""", unsafe_allow_html=True)
+
+# add main title in top bar via CSS 
+st.markdown("""
+<style>
+    .app-title {
+        position: fixed;
+        top: +13px;  /* decrease to move up */
+        font-size: 27px;
+        font-weight: 600;
+        color: #a064ff;
+        z-index: 999999;
+        pointer-events: none;
+    }
+</style>
+<div class="app-title">Interactive Guide to Machine Learning Performance Metrics</div>
+""", unsafe_allow_html=True)
 
 # initial value of session state
 if 'upar' not in ss:
@@ -35,8 +57,7 @@ pg = st.navigation([p1, p0])
 pg.run()
 
 with st.sidebar:
-    st.markdown(":violet[**Interactive Guide to Machine Learning Performance Metrics**]") 
-
+    # st.markdown(":violet[**Guide to Machine Learning Performance Metrics**]") 
     with st.container(border=True):
         st.text("Simulate score distribution")
         col_x1, col_x2, = st.columns([0.50, 0.50])

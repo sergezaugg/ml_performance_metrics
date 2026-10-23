@@ -9,9 +9,6 @@ col_aa, col_bb, = st.columns([1.00, 0.20])
 
 with col_aa: 
 
-    with st.container(border=True, key='conta_01'):
-        st.subheader(":violet[Interactive Guide to Machine Learning Performance Metrics]") 
-
     with st.container(border=True, key='conta_02'):
         st.markdown(
         '''    

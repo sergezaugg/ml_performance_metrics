@@ -48,49 +48,22 @@ def apply_global_styles():
     st.markdown("""
     <style>
         [data-testid="stHeader"] {
-            height: 5rem; 
-            min-height: 5rem};
+            height: 3rem; 
+            min-height: 3rem};
     </style>
     """, unsafe_allow_html=True)
 
-    # # change color of navigation bar background and tabs          
-    # st.markdown("""
-    #     <style>
-    #     /* Header background */
-    #     .stAppHeader {background-color: #0E1117;}
-
-    #     /* Default tab background */
-    #     .stAppHeader a {background-color: #000000 !important;}
-
-    #     /* Hover state */
-    #     .stAppHeader a:hover {background-color: #3b4d63 !important;}
-
-    #     /* click state */
-    #     .stAppHeader a:active {background-color: #dddddd !important; }
-
-    #     /* Active page */
-    #     .stAppHeader a[aria-current="page"] {background-color: #176c93 !important;}
-
-    #     /* Bouton borders  */
-    #     .stAppHeader a {
-    #         border: 1px solid rgba(255, 255, 255, 0.75);
-    #         margin: 2px 4px;
-    #         padding: 4px 10px;
-    #     }
-
-    #     </style>
-    # """, unsafe_allow_html=True)
 
     # All navigation tabs: same fixed width
     st.markdown("""
     <style>
-        .stAppHeader a {
-            width: 135px !important;
+        .stSidebar a {
+            width: 150px !important;
             min-width: 135px !important;
-            max-width: 135px !important;
+            max-width: 150px !important;
             box-sizing: border-box !important;
-            justify-content: center !important;
-            text-align: center !important;
+            justify-content: left !important;
+            text-align: left !important;
             white-space: nowrap !important;
         }
     </style>
@@ -115,30 +88,7 @@ def apply_global_styles():
     </div>
     """, unsafe_allow_html=True)
 
-    # # Outer frame around the entire app
-    # st.markdown("""
-    # <style>
-    # /* Outer frame around the entire app */
-    # body::after {
-    # content: "";
-    # position: fixed;
-    # inset: 4px;
-    # border: 1px solid rgba(255, 255, 255, 0.6);
-    # pointer-events: none;
-    # z-index: 999999;
-    # }
-
-    # /* Separator below navigation */
-    # [data-testid="stHeader"] {
-    # border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-    # }
-
-    # /* Separator beside sidebar */
-    # [data-testid="stSidebar"] {
-    # border-right: 1px solid rgba(255, 255, 255, 0.6);
-    # }
-    # </style>
-    # """, unsafe_allow_html=True)
+  
 
 
 
