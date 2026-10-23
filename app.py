@@ -8,8 +8,33 @@ import streamlit as st
 from streamlit import session_state as ss
 from utils import update_ss
 import numpy as np
+from resources.styles import apply_global_styles
 
-st.set_page_config(layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(layout="wide", initial_sidebar_state="expanded", page_title="ML metrics", page_icon='pics/z_logo_violet.png')
+apply_global_styles() # apply custom CSS styles 
+
+# change color of navigation bar background       
+st.markdown("""
+    <style>
+    .stAppHeader {background-color: #000000;}
+    </style>
+""", unsafe_allow_html=True)
+
+# add main title in top bar via CSS 
+st.markdown("""
+<style>
+    .app-title {
+        position: fixed;
+        top: +13px;  /* decrease to move up */
+        font-size: 27px;
+        font-weight: 600;
+        color: #a064ff;
+        z-index: 999999;
+        pointer-events: none;
+    }
+</style>
+<div class="app-title">Interactive Guide to Machine Learning Performance Metrics</div>
+""", unsafe_allow_html=True)
 
 # initial value of session state
 if 'upar' not in ss:
@@ -26,14 +51,13 @@ if 'upar' not in ss:
         }
 
 # make navigation
-p0 = st.Page("st_page_00.py", title="Summary")
-p1 = st.Page("st_page_01.py", title="Interactive")
+p0 = st.Page("pages/st_page_00.py", title="ML Summary")
+p1 = st.Page("pages/st_page_01.py", title="Interactive Guide")
 pg = st.navigation([p1, p0])
 pg.run()
 
 with st.sidebar:
-    st.markdown(":violet[**Interactive Guide to Machine Learning Performance Metrics**]") 
-
+    # st.markdown(":violet[**Guide to Machine Learning Performance Metrics**]") 
     with st.container(border=True):
         st.text("Simulate score distribution")
         col_x1, col_x2, = st.columns([0.50, 0.50])
@@ -56,29 +80,8 @@ with st.sidebar:
                                         label_visibility = "visible", key = "Class_B_003", on_change = update_ss, args=["Class_B_003", "sigma_2"])
             ss["upar"]["col_b"] = st.color_picker("Color", ss["upar"]["col_b"])
 
-
-
-    with st.container(border=True): 
-        st.markdown("""
-        ## Terminology:              
-        **Positives** = items to be detected  
-        **Negatives** = items not of interest  
-        **TP** = True Positives  
-        **TN** = True Negatives  
-        **FP** = False Positives  
-        **FN** = False Negatives  
-        **PPV** = Positive Predictive Value  
-        **NPV** = Negative Predictive Value  
-        """)        
     # logos an links
     c1, c2 = st.columns([55,200])
-    c1.image(image='pics/z_logo_violet.png', width=65)
-    c2.markdown('''
-    :primary[v1.2.0]  
-    :primary[Created by]
-    :primary[[Serge Zaugg](https://www.linkedin.com/in/dkifh34rtn345eb5fhrthdbgf45)]  
-    :primary[[Pollito-ML](https://github.com/sergezaugg)]
-    ''')
     st.logo(image='pics/z_logo_violet.png', size="large", link="https://github.com/sergezaugg")
 
        
