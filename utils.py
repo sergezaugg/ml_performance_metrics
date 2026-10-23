@@ -54,7 +54,7 @@ def make_fig(df, dot_colors):
         color_discrete_sequence = dot_colors,
         template='plotly_dark',
         width = 900,
-        height = 300,
+        height = 250,
         labels={"proba_score": "Score", "jitter": ""},
         title = "",
         )

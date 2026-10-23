@@ -54,7 +54,7 @@ with col_aa:
     fig00.add_vline(x=ss["upar"]["dth"])
 
     # display plot and perf metrics 
-    with st.container(border=True, height = 420):
+    with st.container(border=True, height = 380):
 
         _, c2, _ = st.columns([0.010, 1.00, 0.015])
         with c2:
@@ -80,7 +80,7 @@ with col_aa:
         
 with col_bb: 
 
-    with st.container(border=True, height = 750): 
+    with st.container(border=True, height = 700): 
         st.caption("""
         Terminology:    
                  
@@ -100,5 +100,4 @@ with col_bb:
 
         **NPV:** Negative Predictive Value  
         """)    
-        
-            
+           
