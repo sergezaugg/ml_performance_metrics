@@ -53,7 +53,9 @@ if 'upar' not in ss:
 # make navigation
 p0 = st.Page("pages/st_page_00.py", title="ML Summary")
 p1 = st.Page("pages/st_page_01.py", title="Interactive Guide")
-pg = st.navigation([p1, p0])
+p2 = st.Page("pages/st_page_about.py", title="About")
+
+pg = st.navigation([p1, p0, p2])
 pg.run()
 
 with st.sidebar:
