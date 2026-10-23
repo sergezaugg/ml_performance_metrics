@@ -12,7 +12,7 @@ def apply_global_styles():
     st.markdown("""
         <style>
             .block-container {
-                max-width: 1590px;
+                max-width: 1500px;
                 min-width: 1400px;
                 padding-left: 2rem;
                 padding-right: 2rem;
@@ -41,10 +41,6 @@ def apply_global_styles():
             padding-left: 1.5rem;
             margin-top: -1rem !important;  /* pull dashboard upward */
             } /* here 
-
-           
-            
-
         </style>
         """, unsafe_allow_html=True)
 
@@ -57,33 +53,33 @@ def apply_global_styles():
     </style>
     """, unsafe_allow_html=True)
 
-    # change color of navigation bar background and tabs          
-    st.markdown("""
-        <style>
-        /* Header background */
-        .stAppHeader {background-color: #0E1117;}
+    # # change color of navigation bar background and tabs          
+    # st.markdown("""
+    #     <style>
+    #     /* Header background */
+    #     .stAppHeader {background-color: #0E1117;}
 
-        /* Default tab background */
-        .stAppHeader a {background-color: #000000 !important;}
+    #     /* Default tab background */
+    #     .stAppHeader a {background-color: #000000 !important;}
 
-        /* Hover state */
-        .stAppHeader a:hover {background-color: #3b4d63 !important;}
+    #     /* Hover state */
+    #     .stAppHeader a:hover {background-color: #3b4d63 !important;}
 
-        /* click state */
-        .stAppHeader a:active {background-color: #dddddd !important; }
+    #     /* click state */
+    #     .stAppHeader a:active {background-color: #dddddd !important; }
 
-        /* Active page */
-        .stAppHeader a[aria-current="page"] {background-color: #176c93 !important;}
+    #     /* Active page */
+    #     .stAppHeader a[aria-current="page"] {background-color: #176c93 !important;}
 
-        /* Bouton borders  */
-        .stAppHeader a {
-            border: 1px solid rgba(255, 255, 255, 0.75);
-            margin: 2px 4px;
-            padding: 4px 10px;
-        }
+    #     /* Bouton borders  */
+    #     .stAppHeader a {
+    #         border: 1px solid rgba(255, 255, 255, 0.75);
+    #         margin: 2px 4px;
+    #         padding: 4px 10px;
+    #     }
 
-        </style>
-    """, unsafe_allow_html=True)
+    #     </style>
+    # """, unsafe_allow_html=True)
 
     # All navigation tabs: same fixed width
     st.markdown("""
@@ -115,34 +111,34 @@ def apply_global_styles():
         }
     </style>
     <div class="app-label">
-        v1.2.8-β<br>© 2026 Serge Zaugg
+        v1.2.0<br>© 2026 Serge Zaugg
     </div>
     """, unsafe_allow_html=True)
 
-    # Outer frame around the entire app
-    st.markdown("""
-    <style>
-    /* Outer frame around the entire app */
-    body::after {
-    content: "";
-    position: fixed;
-    inset: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    pointer-events: none;
-    z-index: 999999;
-    }
+    # # Outer frame around the entire app
+    # st.markdown("""
+    # <style>
+    # /* Outer frame around the entire app */
+    # body::after {
+    # content: "";
+    # position: fixed;
+    # inset: 4px;
+    # border: 1px solid rgba(255, 255, 255, 0.6);
+    # pointer-events: none;
+    # z-index: 999999;
+    # }
 
-    /* Separator below navigation */
-    [data-testid="stHeader"] {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-    }
+    # /* Separator below navigation */
+    # [data-testid="stHeader"] {
+    # border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    # }
 
-    /* Separator beside sidebar */
-    [data-testid="stSidebar"] {
-    border-right: 1px solid rgba(255, 255, 255, 0.6);
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    # /* Separator beside sidebar */
+    # [data-testid="stSidebar"] {
+    # border-right: 1px solid rgba(255, 255, 255, 0.6);
+    # }
+    # </style>
+    # """, unsafe_allow_html=True)
 
 
 
