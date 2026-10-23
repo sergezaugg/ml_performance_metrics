@@ -8,8 +8,11 @@ import streamlit as st
 from streamlit import session_state as ss
 from utils import update_ss
 import numpy as np
+from resources.styles import apply_global_styles
 
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
+apply_global_styles() # apply custom CSS styles 
+
 
 # initial value of session state
 if 'upar' not in ss:
