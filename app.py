@@ -51,8 +51,8 @@ if 'upar' not in ss:
         }
 
 # make navigation
-p0 = st.Page("st_page_00.py", title="Summary")
-p1 = st.Page("st_page_01.py", title="Interactive")
+p0 = st.Page("pages/st_page_00.py", title="Summary")
+p1 = st.Page("pages/st_page_01.py", title="Interactive Guide")
 pg = st.navigation([p1, p0])
 pg.run()
 
