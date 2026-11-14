@@ -1,4 +1,4 @@
-# Explain and understand machine learning performance metrics
+# Interactive Guide to Machine Learning Performance Metrics
 
 **SUMMARY**
 
@@ -7,8 +7,6 @@ Many performance metric exist but their practical interpretation is not trivial.
 The tool simulates the predicted score returned by a model for two classes.
 The score can be manually tuned to assess many relevant scenarios (balanced vs unbalanced classes, good vs bad separation).
 The score is graphically shown and a decision threshold can be manually adjusted.
-
-**The interactive dashboard is deployed here https://ml-performance-metrics.streamlit.app/**
 
 **DEPENDENCIES**
 * Developed under Python 3.12.8

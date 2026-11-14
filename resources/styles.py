@@ -84,7 +84,7 @@ def apply_global_styles():
         }
     </style>
     <div class="app-label">
-        v1.2.0<br>© 2026 Serge Zaugg
+        v1.2.1<br>© 2026 Serge Zaugg
     </div>
     """, unsafe_allow_html=True)
 
