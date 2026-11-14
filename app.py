@@ -28,7 +28,7 @@ st.markdown("""
         top: +13px;  /* decrease to move up */
         font-size: 27px;
         font-weight: 600;
-        color: #a064ff;
+        color: #eeeeff;
         z-index: 999999;
         pointer-events: none;
     }
@@ -39,8 +39,8 @@ st.markdown("""
 # initial value of session state
 if 'upar' not in ss:
     ss["upar"] = {
-        "col_a" : '#FF00FF',
-        "col_b" : '#6AFF00',
+        "col_a" : "#FF0077",
+        "col_b" : "#0080FF",
         "dth" : 0.5,
         "N_1" : 1000,
         "mu_1" : 0.20,
