@@ -8,8 +8,8 @@
 `-t` stands for tag  
 `-f` location of Dockerfile  
 ```
-docker build --no-cache -t type-m-error:v0.0.0 -f docker/v2/Dockerfile .
-docker build            -t type-m-error:v0.0.0 -f docker/v2/Dockerfile .
+docker build --no-cache -t ml-perf-met:v0.0.0 -f docker/v2/Dockerfile .
+docker build            -t ml-perf-met:v0.0.0 -f docker/v2/Dockerfile .
 ```
 
 ## 2. Usage 
@@ -21,11 +21,11 @@ docker build            -t type-m-error:v0.0.0 -f docker/v2/Dockerfile .
 
 ```
 # create container 1 and start (two-liner)
-docker create -p  3838:3838 --name typemerror-cont type-m-error:v0.0.0
-docker start typemerror-cont
+docker create -p  3838:3838 --name perfmet-cont ml-perf-met:v0.0.0
+docker start perfmet-cont
 
 # create container 2 and start (one-liner)
-docker run -d -p 50111:3838 --name typemerror-cont type-m-error:v0.0.0
+docker run -d -p 50111:3838 --name perfmet-cont ml-perf-met:v0.0.0
 ```
 
 ### 2.2 Local check/usage in browser 
@@ -34,7 +34,7 @@ http://localhost:50111
 
 ### 2.3 Stop container
 ```
-docker stop typemerror-cont
+docker stop perfmet-cont
 ```
 
 ### 2.4 Get info
@@ -49,11 +49,11 @@ docker ps -a
 ### 3.1 Remove container
 `-f`  force
 ```
-docker rm -f typemerror-cont
+docker rm -f perfmet-cont
 ```
 
 ### 3.2 Erase image
 ```
-docker rmi type-m-error:v0.0.0
+docker rmi ml-perf-met:v0.0.0
 ```
 
