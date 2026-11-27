@@ -6,7 +6,6 @@
 
 import streamlit as st
 from streamlit import session_state as ss
-from utils import update_ss
 import numpy as np
 from resources.styles import apply_global_styles
 
