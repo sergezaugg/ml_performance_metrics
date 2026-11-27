@@ -40,7 +40,7 @@ def make_df(N_1, N_2, mu_1, mu_2, sigma_1, sigma_2):
         make_one_class_data(N_2, mu_2, sigma_2, class_name_2) 
         ])
     df['jitter'] = np.random.uniform(size=N_1+N_2)
-    df['jitter'][df['class'] == class_name_1] += 1
+    df.loc[df['class'] == class_name_1, 'jitter'] += 1
     return(df)
 
 

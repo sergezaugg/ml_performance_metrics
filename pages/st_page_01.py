@@ -16,7 +16,6 @@ col_aa, col_bb, = st.columns([1.00,  0.20])
 
 
 with st.sidebar:
-    # st.markdown(":violet[**Guide to Machine Learning Performance Metrics**]") 
     with st.container(border=True):
         st.text("Simulate score distribution")
         col_x1, col_x2, = st.columns([0.50, 0.50])
@@ -60,7 +59,7 @@ with col_aa:
         with c2:
             ss["upar"]["dth"] = st.slider(label ="Decision threshold", min_value= 0.0, max_value=1.0, value=ss["upar"]["dth"], 
                 key="slide_07", on_change=update_ss, args=["slide_07", "dth"], label_visibility = "visible")
-        st.plotly_chart(fig00, use_container_width=True, config={"displayModeBar": False})    
+        st.plotly_chart(fig00, width='stretch', config={"displayModeBar": False})    
 
     #-----------------------
     # 2nd line 
