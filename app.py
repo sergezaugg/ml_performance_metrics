@@ -6,7 +6,6 @@
 
 import streamlit as st
 from streamlit import session_state as ss
-from utils import update_ss
 import numpy as np
 from resources.styles import apply_global_styles
 
@@ -51,7 +50,7 @@ if 'upar' not in ss:
         }
 
 # make navigation
-p0 = st.Page("pages/st_page_00.py", title="ML Summary")
+p0 = st.Page("pages/st_page_00.py", title="Summary")
 p1 = st.Page("pages/st_page_01.py", title="Interactive Guide")
 p2 = st.Page("pages/st_page_about.py", title="About")
 

@@ -13,13 +13,12 @@ with col_aa:
         st.markdown(
         '''    
         :violet[**SUMMARY**]
-        
-        In applied machine learning we measure the predictive performance of models.
-        Many performance metric exist but their practical interpretation is not always trivial.
-        Here, I present several important metrics of predictive performance.
-        The tool simulates the predicted score returned by a model for binary classification.
-        The score's ability to separate the classes and the class balance can be manually adjusted to assess many relevant scenarios.
-        The score is graphically shown and the decision threshold can be manually adjusted.
+
+        In applied ML, metrics such as the Precision and Recall are used to evaluate classification models, 
+        but their practical meaning can be difficult to grasp. This app simulates model predictions 
+        and allows users to adjust parameters and visualize how they affect these metrics.
+        The same metrics are used to evaluate medical diagnostic tests, making this app a useful 
+        resource for clinicians to understand and interpret these concepts as well.
         ''')
     
         st.markdown(
