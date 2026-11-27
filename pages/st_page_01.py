@@ -16,7 +16,6 @@ col_aa, col_bb, = st.columns([1.00,  0.20])
 
 
 with st.sidebar:
-    # st.markdown(":violet[**Guide to Machine Learning Performance Metrics**]") 
     with st.container(border=True):
         st.text("Simulate score distribution")
         col_x1, col_x2, = st.columns([0.50, 0.50])
